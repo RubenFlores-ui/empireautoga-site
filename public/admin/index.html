@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<title>Inventory Admin | Empire Auto Group</title>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--blue:#1aa3e8;--blue-d:#0c86c4;--black:#0a0a0a;--line:#e3e5e8;--bg:#f4f5f7;--muted:#6b6f76;--red:#d93838;--green:#1f9d55;--amber:#e0a100}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:#1d1d1f;font-size:15px;line-height:1.45}
+h1,h2,h3{font-family:Oswald,sans-serif;text-transform:uppercase;letter-spacing:.02em}
+button,input,select,textarea{font:inherit}
+input,select,textarea{width:100%;padding:11px 12px;border:1px solid #cdd1d6;border-radius:6px;background:#fff;font-size:16px}
+textarea{min-height:90px;resize:vertical}
+label{display:block;font-size:12px;font-weight:700;text-transform:uppercase;color:var(--muted);margin-bottom:5px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;background:var(--blue);color:#fff;border:0;border-radius:6px;padding:11px 18px;font-weight:700;cursor:pointer;min-height:44px;text-decoration:none}
+.btn:hover{background:var(--blue-d)}.btn:disabled{opacity:.55;cursor:default}
+.btn.dark{background:#222}.btn.ghost{background:#fff;color:#222;border:1px solid #cdd1d6}.btn.red{background:var(--red)}.btn.sm{padding:7px 12px;min-height:36px;font-size:13px}
+header{background:var(--black);color:#fff;border-bottom:3px solid var(--blue);position:sticky;top:0;z-index:20}
+header .in{max-width:1100px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+header h1{font-size:20px;flex:1}
+header a{color:#9cdcff;font-size:14px}
+main{max-width:1100px;margin:0 auto;padding:20px 16px 80px}
+.card{background:#fff;border:1px solid var(--line);border-radius:10px;padding:20px}
+#login{max-width:380px;margin:12vh auto 0}
+#login h2{font-size:24px;margin-bottom:14px}
+.err{color:var(--red);font-size:14px;margin-top:10px;min-height:20px}
+.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:16px}
+.toolbar input,.toolbar select{width:auto;flex:1;min-width:150px}
+.list{display:grid;gap:10px}
+.row{display:grid;grid-template-columns:110px 1fr auto;gap:14px;align-items:center;background:#fff;border:1px solid var(--line);border-radius:10px;padding:10px}
+.row .th{width:110px;height:74px;border-radius:6px;background:#ddd center/cover;position:relative}
+.row .th .v{position:absolute;bottom:4px;left:4px;background:rgba(0,0,0,.75);color:#fff;font-size:10px;font-weight:700;padding:2px 5px;border-radius:3px}
+.row h3{font-size:17px}
+.row .meta{color:var(--muted);font-size:13px}
+.row .acts{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}
+.pill{display:inline-block;font-size:11px;font-weight:700;text-transform:uppercase;padding:2px 8px;border-radius:20px;margin-left:6px;vertical-align:middle}
+.pill.available{background:#e3f6ea;color:var(--green)}.pill.pending{background:#fff4d6;color:#9a6c00}.pill.sold{background:#fde6e6;color:var(--red)}.pill.feat{background:#e1f3fd;color:var(--blue-d)}
+.empty{text-align:center;color:var(--muted);padding:40px}
+/* editor */
+#editor{display:none}
+.ed-head{display:flex;align-items:center;gap:10px;margin-bottom:16px}
+.ed-head h2{flex:1;font-size:22px}
+.sec{margin-bottom:18px}
+.sec h3{font-size:17px;margin-bottom:12px;color:var(--blue-d)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.grid .w2{grid-column:span 2}.grid .w3{grid-column:1/-1}
+.vin-row{display:flex;gap:8px;flex-wrap:wrap}
+.vin-row input{flex:1;min-width:200px;text-transform:uppercase;font-family:ui-monospace,Menlo,monospace;letter-spacing:.05em}
+.note{font-size:13px;color:var(--muted);margin-top:8px}
+.note.ok{color:var(--green)}.note.bad{color:var(--red)}
+.photos{display:grid;grid-template-columns:repeat(auto-fill,minmax(130px,1fr));gap:10px}
+.ph{position:relative;aspect-ratio:4/3;border-radius:8px;background:#ddd center/cover;border:2px solid transparent}
+.ph.main{border-color:var(--blue)}
+.ph .tag{position:absolute;top:6px;left:6px;background:var(--blue);color:#fff;font-size:10px;font-weight:700;padding:2px 6px;border-radius:3px;text-transform:uppercase}
+.ph .ctl{position:absolute;bottom:6px;left:6px;right:6px;display:flex;gap:4px;justify-content:space-between}
+.ph .ctl button{background:rgba(0,0,0,.72);color:#fff;border:0;border-radius:4px;width:34px;height:30px;cursor:pointer;font-size:14px}
+.ph.up{display:flex;align-items:center;justify-content:center;color:#555;font-size:12px;font-weight:700;background:#eef0f3}
+.drop{border:2px dashed #b9c0c8;border-radius:8px;display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:4/3;cursor:pointer;color:var(--muted);font-weight:700;font-size:13px;text-align:center;padding:8px;background:#fafbfc}
+.drop:hover{border-color:var(--blue);color:var(--blue)}
+.vid-box{display:flex;gap:14px;flex-wrap:wrap;align-items:flex-start}
+.vid-box video{width:320px;max-width:100%;border-radius:8px;background:#000}
+.bar{height:8px;background:#e3e5e8;border-radius:4px;overflow:hidden;margin-top:8px;width:260px;max-width:100%}
+.bar i{display:block;height:100%;width:0;background:var(--blue);transition:width .2s}
+.switch{display:flex;align-items:center;gap:8px;font-weight:600;font-size:15px;text-transform:none;color:#1d1d1f;cursor:pointer}
+.switch input{width:20px;height:20px;accent-color:var(--blue)}
+.savebar{position:sticky;bottom:0;background:#fff;border-top:1px solid var(--line);padding:12px 16px;margin:20px -20px -20px;display:flex;gap:10px;justify-content:flex-end;border-radius:0 0 10px 10px;flex-wrap:wrap}
+.toast{position:fixed;left:50%;bottom:24px;transform:translateX(-50%);background:#111;color:#fff;padding:12px 18px;border-radius:8px;font-weight:600;z-index:99;display:none;max-width:90vw}
+#scanner{position:fixed;inset:0;background:rgba(0,0,0,.9);z-index:50;display:none;flex-direction:column;align-items:center;justify-content:center;gap:14px;padding:16px;color:#fff}
+#scanner video{width:100%;max-width:520px;border-radius:10px;border:3px solid var(--blue)}
+:focus-visible{outline:3px solid var(--blue);outline-offset:2px}
+@media(max-width:700px){
+  .grid{grid-template-columns:1fr 1fr}.grid .w2{grid-column:1/-1}
+  .row{grid-template-columns:84px 1fr}.row .th{width:84px;height:60px}.row .acts{grid-column:1/-1;justify-content:flex-start}
+}
+</style>
+</head>
+<body>
+<header><div class="in"><h1>Empire Auto · Inventory Admin</h1><a href="/" target="_blank" rel="noopener">View website ↗</a><button class="btn sm ghost" id="logoutBtn" style="display:none">Log out</button></div></header>
+
+<main>
+  <!-- LOGIN -->
+  <div id="login" class="card">
+    <h2>Admin Login</h2>
+    <form id="loginForm">
+      <label for="pw">Password</label>
+      <input id="pw" type="password" autocomplete="current-password" required>
+      <button class="btn" style="width:100%;margin-top:14px">Log in</button>
+      <div class="err" id="loginErr"></div>
+    </form>
+  </div>
+
+  <!-- LIST -->
+  <div id="listView" style="display:none">
+    <div class="toolbar">
+      <button class="btn" id="addBtn">＋ Add Vehicle</button>
+      <input id="q" type="search" placeholder="Search year, make, model, stock # or VIN">
+      <select id="fStatus"><option value="">All statuses</option><option value="available">Available</option><option value="pending">Sale pending</option><option value="sold">Sold</option></select>
+    </div>
+    <div class="list" id="list"></div>
+  </div>
+
+  <!-- EDITOR -->
+  <div id="editor" class="card">
+    <div class="ed-head"><button class="btn sm ghost" id="backBtn">← Back</button><h2 id="edTitle">Add Vehicle</h2></div>
+
+    <div class="sec">
+      <h3>1. VIN</h3>
+      <div class="vin-row">
+        <input id="vin" maxlength="17" placeholder="17-character VIN" autocomplete="off" spellcheck="false">
+        <button class="btn" id="decodeBtn" type="button">Decode VIN</button>
+        <button class="btn dark" id="scanBtn" type="button">📷 Scan</button>
+      </div>
+      <div class="note" id="vinNote">Enter or scan the VIN, then tap Decode — year, make, model, trim and specs fill in automatically.</div>
+    </div>
+
+    <div class="sec">
+      <h3>2. Vehicle details</h3>
+      <div class="grid">
+        <div><label>Year *</label><input id="year" inputmode="numeric"></div>
+        <div><label>Make *</label><input id="make"></div>
+        <div><label>Model *</label><input id="model"></div>
+        <div class="w2"><label>Trim</label><input id="trim" placeholder="e.g. EX-L Sport Utility 4D"></div>
+        <div><label>Body style *</label><select id="body"><option>SUV</option><option>Sedan</option><option>Coupe</option><option>Pickup</option><option>Minivan</option><option>Hatchback</option><option>Wagon</option><option>Convertible</option><option>Van</option></select></div>
+        <div><label>Engine</label><input id="engine"></div>
+        <div><label>Drivetrain</label><input id="drivetrain"></div>
+        <div><label>Transmission</label><input id="transmission"></div>
+        <div><label>Fuel</label><input id="fuel"></div>
+        <div><label>Doors</label><input id="doors" inputmode="numeric"></div>
+        <div></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h3>3. Your details</h3>
+      <div class="grid">
+        <div><label>Price (incl. dealer fees)</label><input id="price" inputmode="numeric" placeholder="Blank = Call for Price"></div>
+        <div><label>Mileage</label><input id="miles" inputmode="numeric"></div>
+        <div><label>Stock #</label><input id="stock"></div>
+        <div><label>Exterior color</label><input id="extColor"></div>
+        <div><label>Interior color</label><input id="intColor"></div>
+        <div><label>Status</label><select id="status"><option value="available">Available</option><option value="pending">Sale pending</option><option value="sold">Sold (hidden from site)</option></select></div>
+        <div class="w3"><label>Description / notes for shoppers</label><textarea id="description" placeholder="One owner, clean Carfax, new tires…"></textarea></div>
+        <div class="w3"><label class="switch"><input type="checkbox" id="featured"> Show in "Featured Vehicles" on the home page</label></div>
+      </div>
+    </div>
+
+    <div class="sec">
+      <h3>4. Photos</h3>
+      <div class="photos" id="photos"></div>
+      <input type="file" id="photoInput" accept="image/*" multiple hidden>
+      <div class="note">The first photo is the main photo. Use ◀ ▶ to reorder. Photos are resized automatically before upload.</div>
+    </div>
+
+    <div class="sec">
+      <h3>5. Walk-around video</h3>
+      <div class="vid-box">
+        <div id="vidPreview"></div>
+        <div>
+          <input type="file" id="videoInput" accept="video/*" hidden>
+          <button class="btn dark" type="button" id="vidBtn">🎬 Upload video</button>
+          <button class="btn sm red" type="button" id="vidDel" style="display:none;margin-left:6px">Remove video</button>
+          <div class="bar" id="vidBar" style="display:none"><i></i></div>
+          <div class="note" id="vidNote">Keep it to about 60 seconds. It plays next to the main photo on the website.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="savebar">
+      <button class="btn red" type="button" id="delBtn" style="margin-right:auto">Delete vehicle</button>
+      <button class="btn ghost" type="button" id="cancelBtn">Cancel</button>
+      <button class="btn" type="button" id="saveBtn">Save &amp; publish</button>
+    </div>
+  </div>
+</main>
+
+<div id="scanner">
+  <div style="font-weight:700">Point the camera at the VIN barcode (door jamb or windshield)</div>
+  <video id="scanVideo" playsinline muted></video>
+  <div class="note" id="scanNote" style="color:#ccc"></div>
+  <button class="btn" type="button" id="scanClose">Cancel</button>
+</div>
+<div class="toast" id="toast"></div>
+
+<script src="https://unpkg.com/@zxing/library@0.21.3/umd/index.min.js"></script>
+<script>
+{
+const $ = (s) => document.querySelector(s);
+const esc = (v) => String(v ?? "").replace(/[&<>"']/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c]));
+const money = (n) => (n ? "$" + Number(n).toLocaleString() : "Call for Price");
+let PW = "", CFG = {}, CARS = [], cur = null, busy = 0;
+
+function toast(msg, ms = 2600) { const t = $("#toast"); t.textContent = msg; t.style.display = "block"; clearTimeout(t._h); t._h = setTimeout(() => (t.style.display = "none"), ms); }
+function show(view) { for (const id of ["login", "listView", "editor"]) $("#" + id).style.display = id === view ? "block" : "none"; $("#logoutBtn").style.display = view === "login" ? "none" : "inline-flex"; window.scrollTo(0, 0); }
+async function api(path, opts = {}) {
+  const r = await fetch(path, { ...opts, headers: { "x-admin-password": PW, ...(opts.headers || {}) } });
+  const data = await r.json().catch(() => ({}));
+  if (r.status === 401) { logout(); throw new Error("Please log in again"); }
+  if (!r.ok) throw new Error(data.error || "Something went wrong (" + r.status + ")");
+  return data;
+}
+
+/* ---------- login ---------- */
+async function login(pw) {
+  PW = pw;
+  const r = await fetch("/api/login", { method: "POST", headers: { "x-admin-password": pw } });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) { PW = ""; throw new Error(data.error || "Wrong password"); }
+  CFG = data;
+  try { sessionStorage.setItem("eag_pw", pw); } catch {}
+  await loadCars(); show("listView");
+}
+function logout() { PW = ""; try { sessionStorage.removeItem("eag_pw"); } catch {} show("login"); }
+$("#loginForm").addEventListener("submit", async (e) => {
+  e.preventDefault(); $("#loginErr").textContent = "";
+  try { await login($("#pw").value); } catch (err) { $("#loginErr").textContent = err.message; }
+});
+$("#logoutBtn").onclick = logout;
+
+/* ---------- list ---------- */
+async function loadCars() { CARS = await api("/api/inventory?all=1"); renderList(); }
+function renderList() {
+  const q = $("#q").value.trim().toLowerCase(), st = $("#fStatus").value;
+  const rows = CARS.filter((c) => (!st || c.status === st) && (!q || [c.year, c.make, c.model, c.trim, c.stock, c.vin].join(" ").toLowerCase().includes(q)));
+  $("#list").innerHTML = rows.length ? rows.map((c) => `
+    <div class="row">
+      <div class="th" style="background-image:url('${esc(c.photos[0] || "")}')">${c.video ? '<span class="v">▶ VIDEO</span>' : ""}</div>
+      <div><h3>${esc(c.year)} ${esc(c.make)} ${esc(c.model)} <span class="pill ${esc(c.status)}">${c.status === "pending" ? "Sale pending" : esc(c.status)}</span>${c.featured ? '<span class="pill feat">Featured</span>' : ""}</h3>
+        <div class="meta">${esc(money(c.price))} · ${c.miles ? Number(c.miles).toLocaleString() + " mi" : "— mi"} · Stock #${esc(c.stock || "—")} · ${c.photos.length} photo${c.photos.length === 1 ? "" : "s"}</div></div>
+      <div class="acts">
+        <button class="btn sm" data-edit="${esc(c.id)}">Edit</button>
+        ${c.status !== "sold" ? `<button class="btn sm ghost" data-sold="${esc(c.id)}">Mark sold</button>` : `<button class="btn sm ghost" data-avail="${esc(c.id)}">Relist</button>`}
+      </div>
+    </div>`).join("") : '<div class="empty">No vehicles yet. Tap "Add Vehicle" to get started.</div>';
+}
+$("#q").oninput = renderList; $("#fStatus").onchange = renderList;
+$("#list").addEventListener("click", async (e) => {
+  const b = e.target.closest("button"); if (!b) return;
+  if (b.dataset.edit) return openEditor(CARS.find((c) => c.id === b.dataset.edit));
+  const id = b.dataset.sold || b.dataset.avail; if (!id) return;
+  const c = CARS.find((x) => x.id === id); const prev = c.status;
+  c.status = b.dataset.sold ? "sold" : "available";
+  try { await saveAll(); toast(b.dataset.sold ? "Marked sold — removed from website" : "Relisted on website"); } catch (err) { c.status = prev; toast(err.message); }
+  renderList();
+});
+async function saveAll() { await api("/api/inventory", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(CARS) }); }
+
+/* ---------- editor ---------- */
+const FIELDS = ["vin", "year", "make", "model", "trim", "body", "engine", "drivetrain", "transmission", "fuel", "doors", "price", "miles", "stock", "extColor", "intColor", "status", "description"];
+function openEditor(c) {
+  cur = c ? structuredClone(c) : { id: crypto.randomUUID(), photos: [], video: "", status: "available", featured: false, body: "SUV" };
+  cur.isNew = !c;
+  for (const f of FIELDS) $("#" + f).value = cur[f] ?? "";
+  if (!cur.body) $("#body").value = "SUV";
+  $("#featured").checked = !!cur.featured;
+  $("#edTitle").textContent = c ? `Edit ${c.year} ${c.make} ${c.model}` : "Add Vehicle";
+  $("#delBtn").style.display = c ? "inline-flex" : "none";
+  $("#vinNote").className = "note"; $("#vinNote").textContent = "Enter or scan the VIN, then tap Decode — year, make, model, trim and specs fill in automatically.";
+  renderPhotos(); renderVideo(); show("editor");
+}
+$("#addBtn").onclick = () => openEditor(null);
+$("#backBtn").onclick = $("#cancelBtn").onclick = () => { if (busy) return toast("Please wait for uploads to finish"); show("listView"); };
+
+/* VIN decode — NHTSA vPIC (free US government database) */
+const BODY_MAP = [[/pickup/i, "Pickup"], [/minivan/i, "Minivan"], [/van/i, "Van"], [/sport utility|suv|crossover|multi-purpose/i, "SUV"], [/coupe/i, "Coupe"], [/convertible|cabriolet/i, "Convertible"], [/hatchback/i, "Hatchback"], [/wagon/i, "Wagon"], [/sedan|saloon/i, "Sedan"]];
+$("#vin").addEventListener("input", (e) => { e.target.value = e.target.value.toUpperCase().replace(/[^A-HJ-NPR-Z0-9]/g, ""); });
+$("#decodeBtn").onclick = () => decodeVin($("#vin").value);
+async function decodeVin(vin) {
+  const note = $("#vinNote");
+  if (vin.length !== 17) { note.className = "note bad"; note.textContent = "A VIN has 17 characters — this one has " + vin.length + "."; return; }
+  note.className = "note"; note.textContent = "Decoding…";
+  try {
+    const r = await fetch("https://vpic.nhtsa.dot.gov/api/vehicles/DecodeVinValues/" + encodeURIComponent(vin) + "?format=json");
+    const d = (await r.json()).Results[0];
+    if (!d.Make) throw new Error(d.ErrorText || "VIN not found");
+    const set = (id, v) => { if (v && String(v).trim() && String(v) !== "Not Applicable") $("#" + id).value = String(v).trim(); };
+    set("year", d.ModelYear); set("make", (d.Make || "").toUpperCase()); set("model", (d.Model || "").toUpperCase());
+    set("trim", [d.Trim, d.Series].filter(Boolean).join(" ").trim());
+    const eng = [d.DisplacementL ? Number(d.DisplacementL).toFixed(1) + "L" : "", d.EngineCylinders ? (d.EngineConfiguration?.startsWith("V") ? "V" + d.EngineCylinders : d.EngineCylinders + "-cyl") : "", d.Turbo === "Yes" ? "Turbo" : ""].filter(Boolean).join(" ");
+    set("engine", eng); set("drivetrain", d.DriveType); set("fuel", d.FuelTypePrimary); set("doors", d.Doors);
+    set("transmission", [d.TransmissionSpeeds ? d.TransmissionSpeeds + "-speed" : "", d.TransmissionStyle].filter(Boolean).join(" "));
+    const bc = d.BodyClass || ""; const m = BODY_MAP.find(([re]) => re.test(bc)); if (m) $("#body").value = m[1];
+    const warn = d.ErrorCode && !/^0/.test(d.ErrorCode) ? " (NHTSA note: " + d.ErrorText.split(";")[0] + ")" : "";
+    note.className = "note ok"; note.textContent = `✓ Decoded: ${d.ModelYear} ${d.Make} ${d.Model}${d.Trim ? " " + d.Trim : ""}. Check the fields and fill in anything missing.${warn}`;
+  } catch (err) { note.className = "note bad"; note.textContent = "Couldn't decode this VIN: " + err.message + ". Check it, or fill the fields in by hand."; }
+}
+
+/* VIN scanner (camera) */
+let reader = null;
+$("#scanBtn").onclick = async () => {
+  if (!window.ZXing) return toast("Scanner didn't load — type the VIN instead");
+  $("#scanner").style.display = "flex"; $("#scanNote").textContent = "Starting camera…";
+  try {
+    const hints = new Map(); hints.set(ZXing.DecodeHintType.POSSIBLE_FORMATS, [ZXing.BarcodeFormat.CODE_39, ZXing.BarcodeFormat.CODE_128, ZXing.BarcodeFormat.DATA_MATRIX, ZXing.BarcodeFormat.QR_CODE]); hints.set(ZXing.DecodeHintType.TRY_HARDER, true);
+    reader = new ZXing.BrowserMultiFormatReader(hints);
+    $("#scanNote").textContent = "Hold steady about 6–10 inches away.";
+    await reader.decodeFromConstraints({ video: { facingMode: "environment" } }, $("#scanVideo"), (res) => {
+      if (!res) return;
+      let v = res.getText().toUpperCase().replace(/[^A-HJ-NPR-Z0-9]/g, "");
+      if (v.length === 18 && v[0] === "I") v = v.slice(1); // some door labels add a leading I
+      if (v.length === 17) { stopScan(); $("#vin").value = v; decodeVin(v); toast("VIN scanned"); }
+    });
+  } catch (err) { $("#scanNote").textContent = "Camera not available: " + err.message; }
+};
+function stopScan() { try { reader && reader.reset(); } catch {} reader = null; $("#scanner").style.display = "none"; }
+$("#scanClose").onclick = stopScan;
+
+/* Photos */
+function renderPhotos() {
+  const p = cur.photos;
+  $("#photos").innerHTML = p.map((u, i) => `<div class="ph${i ? "" : " main"}" style="background-image:url('${esc(u)}')">${i ? "" : '<span class="tag">Main</span>'}
+    <div class="ctl"><button type="button" data-mv="${i}" data-d="-1" aria-label="Move left">◀</button><button type="button" data-rm="${i}" aria-label="Remove">✕</button><button type="button" data-mv="${i}" data-d="1" aria-label="Move right">▶</button></div></div>`).join("")
+    + (cur._uploading || []).map((n) => `<div class="ph up">Uploading ${esc(n)}…</div>`).join("")
+    + `<div class="drop" id="addPhotos">＋ Add photos<br><span style="font-weight:500">tap to choose or take</span></div>`;
+}
+$("#photos").addEventListener("click", (e) => {
+  if (e.target.closest("#addPhotos")) return $("#photoInput").click();
+  const b = e.target.closest("button"); if (!b) return;
+  const p = cur.photos;
+  if (b.dataset.rm) { p.splice(+b.dataset.rm, 1); }
+  else { const i = +b.dataset.mv, j = i + +b.dataset.d; if (j < 0 || j >= p.length) return; [p[i], p[j]] = [p[j], p[i]]; }
+  renderPhotos();
+});
+$("#photoInput").onchange = async (e) => {
+  const files = [...e.target.files]; e.target.value = "";
+  cur._uploading = (cur._uploading || []).concat(files.map((f) => f.name)); renderPhotos();
+  for (const f of files) {
+    busy++;
+    try { const blob = await shrink(f); const { url } = await api("/api/photo", { method: "POST", headers: { "Content-Type": "image/jpeg" }, body: blob }); cur.photos.push(url); }
+    catch (err) { toast("Photo failed: " + err.message); }
+    finally { busy--; cur._uploading.splice(cur._uploading.indexOf(f.name), 1); renderPhotos(); }
+  }
+};
+function shrink(file, max = 1600) {
+  return new Promise((res, rej) => {
+    const img = new Image(); const u = URL.createObjectURL(file);
+    img.onload = () => { const s = Math.min(1, max / Math.max(img.width, img.height)); const c = document.createElement("canvas"); c.width = Math.round(img.width * s); c.height = Math.round(img.height * s);
+      c.getContext("2d").drawImage(img, 0, 0, c.width, c.height); URL.revokeObjectURL(u); c.toBlob((b) => (b ? res(b) : rej(new Error("couldn't process image"))), "image/jpeg", 0.82); };
+    img.onerror = () => rej(new Error(file.name + " isn't a supported image (try JPG)")); img.src = u;
+  });
+}
+
+/* Video — uploads straight to Cloudinary */
+function renderVideo() {
+  $("#vidPreview").innerHTML = cur.video ? `<video src="${esc(cur.video)}" controls muted playsinline></video>` : "";
+  $("#vidDel").style.display = cur.video ? "inline-flex" : "none";
+  $("#vidBtn").textContent = cur.video ? "🎬 Replace video" : "🎬 Upload video";
+}
+$("#vidBtn").onclick = () => {
+  if (!CFG.cloudinaryCloud || !CFG.cloudinaryPreset) return toast("Video uploads aren't set up yet (Cloudinary settings missing in Netlify)", 4000);
+  $("#videoInput").click();
+};
+$("#vidDel").onclick = () => { cur.video = ""; renderVideo(); };
+$("#videoInput").onchange = (e) => {
+  const f = e.target.files[0]; e.target.value = ""; if (!f) return;
+  if (f.size > 100 * 1024 * 1024) return toast("That video is over 100 MB — trim it to about 60 seconds", 4000);
+  const fd = new FormData(); fd.append("file", f); fd.append("upload_preset", CFG.cloudinaryPreset); fd.append("folder", "empire-auto");
+  const xhr = new XMLHttpRequest(); busy++;
+  $("#vidBar").style.display = "block"; $("#vidBtn").disabled = true; $("#vidNote").textContent = "Uploading video…";
+  xhr.upload.onprogress = (ev) => { if (ev.lengthComputable) $("#vidBar i").style.width = Math.round((ev.loaded / ev.total) * 100) + "%"; };
+  xhr.onload = () => {
+    busy--; $("#vidBtn").disabled = false; $("#vidBar").style.display = "none"; $("#vidBar i").style.width = "0";
+    try { const d = JSON.parse(xhr.responseText); if (!d.secure_url) throw new Error(d.error?.message || "upload failed");
+      // auto quality + web-friendly format, max 1280px wide
+      cur.video = d.secure_url.replace("/upload/", "/upload/q_auto,vc_auto,w_1280,c_limit/").replace(/\.[a-z0-9]+$/i, ".mp4");
+      $("#vidNote").textContent = "✓ Video uploaded. Save to publish it."; renderVideo();
+    } catch (err) { $("#vidNote").textContent = "Video upload failed: " + err.message; }
+  };
+  xhr.onerror = () => { busy--; $("#vidBtn").disabled = false; $("#vidBar").style.display = "none"; $("#vidNote").textContent = "Video upload failed — check your connection and try again."; };
+  xhr.open("POST", `https://api.cloudinary.com/v1_1/${encodeURIComponent(CFG.cloudinaryCloud)}/video/upload`); xhr.send(fd);
+};
+
+/* Save / delete */
+$("#saveBtn").onclick = async () => {
+  if (busy) return toast("Please wait for uploads to finish");
+  for (const f of FIELDS) cur[f] = $("#" + f).value.trim();
+  cur.price = cur.price.replace(/[^0-9.]/g, ""); cur.miles = cur.miles.replace(/[^0-9]/g, "");
+  cur.featured = $("#featured").checked;
+  if (!cur.year || !cur.make || !cur.model) return toast("Year, make and model are required");
+  if (!cur.photos.length && !confirmInline("Save without any photos?")) return;
+  const { isNew, _uploading, ...car } = cur; car.updated = new Date().toISOString();
+  const before = CARS.slice();
+  if (isNew) CARS.unshift(car); else CARS = CARS.map((c) => (c.id === car.id ? car : c));
+  $("#saveBtn").disabled = true;
+  try { await saveAll(); toast("Saved — it's live on the website"); await loadCars(); show("listView"); }
+  catch (err) { CARS = before; toast("Not saved: " + err.message, 4000); }
+  finally { $("#saveBtn").disabled = false; }
+};
+let delArmed = false;
+$("#delBtn").onclick = async () => {
+  if (!delArmed) { delArmed = true; $("#delBtn").textContent = "Tap again to delete"; setTimeout(() => { delArmed = false; $("#delBtn").textContent = "Delete vehicle"; }, 3000); return; }
+  delArmed = false; $("#delBtn").textContent = "Delete vehicle";
+  const before = CARS.slice(); CARS = CARS.filter((c) => c.id !== cur.id);
+  try { await saveAll(); toast("Vehicle deleted"); renderList(); show("listView"); } catch (err) { CARS = before; toast(err.message); }
+};
+let noPhotoOk = false;
+function confirmInline(msg) { if (noPhotoOk) { noPhotoOk = false; return true; } noPhotoOk = true; toast(msg + " Tap Save again to confirm.", 3500); setTimeout(() => (noPhotoOk = false), 3500); return false; }
+
+/* auto-login for this browser tab */
+try { const saved = sessionStorage.getItem("eag_pw"); if (saved) login(saved).catch(() => show("login")); } catch {}
+window.addEventListener("beforeunload", (e) => { if (busy) { e.preventDefault(); e.returnValue = ""; } });
+}
+</script>
+</body>
+</html>

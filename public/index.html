@@ -1,0 +1,862 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Empire Auto Group LLC | Quality Used Cars in Cartersville, GA</title>
+<meta name="description" content="Empire Auto Group in Cartersville, GA. Hand-picked quality used cars, trucks and SUVs, easy auto financing, car rentals and no hidden dealer fees.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --blue:#1aa3e8; --blue-d:#0c86c4; --black:#0a0a0a; --ink:#141414; --panel:#1b1b1b;
+  --line:#2a2a2a; --text:#1d1d1f; --muted:#6b6f76; --bg:#f4f5f7; --white:#fff;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:Inter,system-ui,sans-serif;color:var(--text);background:var(--white);line-height:1.55}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+h1,h2,h3,.oswald{font-family:Oswald,Impact,sans-serif;text-transform:uppercase;letter-spacing:.02em;line-height:1.15}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+.btn{display:inline-block;background:var(--blue);color:#fff;font-weight:700;text-transform:uppercase;font-size:14px;letter-spacing:.05em;padding:13px 28px;border-radius:4px;border:0;cursor:pointer;transition:background .2s}
+.btn:hover{background:var(--blue-d)}
+.btn.ghost{background:transparent;border:2px solid #fff}
+.btn.ghost:hover{background:#fff;color:var(--black)}
+
+/* top bar + header */
+.topbar{background:var(--blue);color:#fff;font-size:13px}
+.topbar .wrap{display:flex;justify-content:flex-end;gap:22px;padding-top:6px;padding-bottom:6px;flex-wrap:wrap}
+.topbar b{font-weight:700}
+header{background:var(--black);position:sticky;top:0;z-index:50;border-bottom:3px solid var(--blue)}
+header .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;padding-top:8px;padding-bottom:8px}
+.logo img{height:105px;width:auto}
+.logo .ph{color:#fff;font-size:13px;margin-top:4px;display:flex;gap:10px}
+nav ul{display:flex;list-style:none;gap:4px;flex-wrap:wrap}
+nav a{color:#fff;font-size:12.5px;font-weight:600;text-transform:uppercase;padding:8px 7px;white-space:nowrap;border-radius:3px;letter-spacing:.03em}
+nav a:hover,nav a.active{color:var(--blue)}
+.burger{display:none;background:none;border:0;color:#fff;font-size:28px;cursor:pointer}
+
+/* hero */
+.hero{position:relative;min-height:560px;background:#111 url('https://dcdws.blob.core.windows.net/dws-9988903-83873-media/sites/43198/2023/02/homepage-banner-68.jpg') center/cover no-repeat;display:flex;flex-direction:column;justify-content:center}
+.hero::before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(0,0,0,.05) 30%,rgba(0,0,0,.55))}
+.hero .wrap{position:relative;width:100%;display:flex;justify-content:flex-end}
+.hero-box{text-align:right;color:#fff;max-width:560px}
+.hero-box h1{font-size:46px;text-shadow:0 2px 12px rgba(0,0,0,.5)}
+.ratings{display:flex;gap:26px;justify-content:flex-end;align-items:center;margin-top:18px;flex-wrap:wrap}
+.ratings div{font-size:14px;text-align:left;line-height:1.35}
+.stars{color:#ffc400;letter-spacing:2px}
+.hero{padding:40px 0 150px}
+/* review ticker */
+.ticker{position:absolute;left:0;right:0;bottom:78px;z-index:3;background:rgba(0,0,0,.72);border-top:2px solid var(--blue);border-bottom:2px solid var(--blue);overflow:hidden;display:flex;align-items:center;height:46px;backdrop-filter:blur(3px)}
+.ticker-label{flex:none;background:var(--blue);color:#fff;font-family:Oswald;text-transform:uppercase;font-size:14px;letter-spacing:.05em;height:100%;display:flex;align-items:center;padding:0 16px;position:relative;z-index:2;box-shadow:6px 0 14px rgba(0,0,0,.5)}
+.ticker-viewport{flex:1;overflow:hidden;mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent);-webkit-mask-image:linear-gradient(90deg,transparent,#000 4%,#000 96%,transparent)}
+.ticker-track{display:flex;width:max-content;animation:tick var(--dur,60s) linear infinite}
+.ticker:hover .ticker-track{animation-play-state:paused}
+.ticker-item{display:flex;align-items:center;gap:8px;color:#fff;font-size:14px;white-space:nowrap;padding:0 30px;border-right:1px solid rgba(255,255,255,.18)}
+.ticker-item .stars{font-size:13px;letter-spacing:1px}
+.ticker-item i{font-style:normal;color:#e8e8e8}
+.ticker-item b{color:var(--blue);font-weight:600}
+.ticker-item .src{font-size:10px;font-weight:700;text-transform:uppercase;background:#fff;color:#111;border-radius:3px;padding:2px 5px}
+@keyframes tick{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@media(prefers-reduced-motion:reduce){.ticker-track{animation-duration:400s}}
+.search-bar{position:relative;margin-top:-60px;z-index:5}
+.search-bar form{background:var(--black);border-bottom:4px solid var(--blue);padding:22px 26px;display:grid;grid-template-columns:repeat(3,1fr) 1fr;gap:16px;align-items:end;border-radius:4px}
+.search-bar label{color:#fff;font-size:12px;font-weight:600;text-transform:uppercase;display:block;margin-bottom:6px}
+select,input,textarea{width:100%;padding:11px 12px;border:1px solid #ccd;border-radius:4px;font:inherit;font-size:14px;background:#fff;color:var(--text)}
+textarea{min-height:110px;resize:vertical}
+
+/* sections */
+section{padding:80px 0}
+.sec-title{text-align:center;margin-bottom:40px}
+.sec-title h2{font-size:34px}
+.sec-title p{color:var(--muted);margin-top:8px}
+.sec-title .bar{width:70px;height:4px;background:var(--blue);margin:14px auto 0}
+.welcome{background:var(--bg)}
+.welcome .grid{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+.welcome h2{font-size:32px;margin-bottom:16px}
+.welcome h2 span{color:var(--blue)}
+.welcome p{margin-bottom:14px;color:#3a3d42}
+.mission{background:var(--black);color:#fff;padding:34px;border-left:5px solid var(--blue);border-radius:4px}
+.mission h3{color:var(--blue);font-size:22px;margin-bottom:12px}
+.mission p{color:#ddd;margin-bottom:8px}
+
+.bodies{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.body-card{background:var(--bg);border-radius:6px;padding:24px 14px;text-align:center;cursor:pointer;transition:.2s;border:2px solid transparent}
+.body-card:hover{border-color:var(--blue);transform:translateY(-3px)}
+.body-card svg{height:60px;width:auto;margin:0 auto 10px;fill:#222}
+.body-card b{font-family:Oswald;text-transform:uppercase;font-size:18px}
+
+.cars{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:24px}
+.car{background:#fff;border:1px solid #e3e5e8;border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:.2s}
+.car:hover{box-shadow:0 10px 30px rgba(0,0,0,.12);transform:translateY(-3px)}
+.car .img{aspect-ratio:4/3;background:#ddd center/cover no-repeat;position:relative}
+.car .tag{position:absolute;top:10px;left:10px;background:var(--blue);color:#fff;font-size:11px;font-weight:700;padding:4px 8px;border-radius:3px;text-transform:uppercase}
+.car .body{padding:18px;flex:1;display:flex;flex-direction:column}
+.car h3{font-size:19px}
+.car .trim{color:var(--muted);font-size:13px;margin:2px 0 12px}
+.car .price{font-family:Oswald;font-size:28px;color:var(--blue)}
+.car .fee{font-size:11px;color:var(--muted)}
+.car .specs{display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:13px;margin:12px 0 16px;color:#444}
+.car .specs span b{display:block;font-size:11px;color:var(--muted);text-transform:uppercase;font-weight:600}
+.car .btn{margin-top:auto;text-align:center}
+
+.reviews{background:var(--black);color:#fff}
+.reviews .sec-title p{color:#aaa}
+.rev-track{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:22px}
+.rev{background:var(--panel);border-radius:6px;padding:26px;border-top:3px solid var(--blue)}
+.rev p{color:#d8d8d8;font-size:15px}
+.rev .who{margin-top:14px;font-weight:700;color:#fff}
+.rev.long p{display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
+.rev.long.open p{-webkit-line-clamp:unset}
+.rev .more{background:none;border:0;color:var(--blue);font-weight:700;cursor:pointer;margin-top:8px;padding:0}
+
+.easy .grid{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.easy-card{border-radius:6px;padding:44px;color:#fff;background:var(--ink);position:relative;overflow:hidden}
+.easy-card:nth-child(2){background:var(--blue)}
+.easy-card:nth-child(2) .btn{background:var(--black)}
+.easy-card h3{font-size:28px;margin-bottom:12px}
+.easy-card p{margin-bottom:22px;opacity:.92}
+
+/* page header */
+.page-head{background:var(--black);color:#fff;padding:54px 0;text-align:center;border-bottom:3px solid var(--blue)}
+.page-head h1{font-size:40px}
+.crumbs{color:#aaa;font-size:13px;margin-top:6px}
+.crumbs a{color:var(--blue)}
+
+/* inventory page */
+.inv{display:grid;grid-template-columns:260px 1fr;gap:30px}
+.filters{background:var(--bg);padding:22px;border-radius:6px;align-self:start;position:sticky;top:160px}
+.filters h3{font-size:20px;margin-bottom:14px}
+.filters label{font-size:12px;font-weight:700;text-transform:uppercase;color:var(--muted);display:block;margin:12px 0 5px}
+.inv-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px;gap:12px;flex-wrap:wrap}
+.inv-top b{font-family:Oswald;font-size:20px;text-transform:uppercase}
+.inv-top select{width:auto}
+
+/* forms */
+.form-card{background:#fff;border:1px solid #e3e5e8;border-radius:6px;padding:34px;max-width:820px;margin:0 auto}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.form-grid .full{grid-column:1/-1}
+.form-card label{font-size:13px;font-weight:600;display:block;margin-bottom:5px}
+.form-card h3{font-size:20px;margin:22px 0 12px;color:var(--blue)}
+.form-card h3:first-child{margin-top:0}
+.note{font-size:13px;color:var(--muted);margin-top:14px}
+.ok{display:none;background:#e7f7ee;border:1px solid #9bd7b4;color:#145c33;padding:16px;border-radius:6px;margin-top:16px}
+
+.two{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.info-box{background:var(--black);color:#fff;border-radius:6px;padding:32px}
+.info-box h3{color:var(--blue);font-size:20px;margin:0 0 10px}
+.info-box p,.info-box li{color:#ddd}
+.hours{list-style:none;margin-top:6px}
+.hours li{display:flex;justify-content:space-between;border-bottom:1px solid var(--line);padding:7px 0;font-size:14px}
+.map{border:0;width:100%;height:320px;border-radius:6px;margin-top:22px}
+.coming{text-align:center;padding:40px 0}
+.buyer-tabs{display:flex;border-bottom:2px solid #e3e5e8;margin-bottom:16px}
+.buyer-tabs button{background:none;border:0;font-family:Oswald;text-transform:uppercase;font-size:18px;padding:10px 22px;cursor:pointer;color:var(--muted);border-bottom:3px solid transparent;margin-bottom:-2px}
+.buyer-tabs button.on{color:var(--blue);border-color:var(--blue)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.tog{display:flex!important;align-items:center;gap:8px;margin:16px 0 4px;font-weight:700!important;color:var(--blue);cursor:pointer}
+.tog input,.chk input{width:18px;height:18px;flex:none;accent-color:var(--blue)}
+.more{display:none;margin-top:10px;padding:16px;background:var(--bg);border-radius:6px}
+.more.open{display:grid}
+#coFields.more{background:none;padding:0}
+#coFields.more.open{display:block}
+.disclose{margin-top:26px;border-top:1px solid #e3e5e8;padding-top:18px;font-size:13px;color:#4a4d52}
+.disclose p{margin:10px 0}
+.chk{display:flex!important;gap:10px;align-items:flex-start;font-weight:500!important;font-size:14px!important;margin:8px 0!important;cursor:pointer}
+.chk a{color:var(--blue);font-weight:700}
+.err{display:none;background:#fdecec;border:1px solid #f1a9a9;color:#8a1c1c;padding:16px;border-radius:6px;margin-top:16px}
+.err a{font-weight:700}
+.finder-intro{max-width:760px;margin:-14px auto 34px;text-align:center;font-size:17px;color:#3a3d42}
+.finder-intro p{margin-bottom:12px}
+.finder-intro b{color:var(--text)}
+.finder-cta{font-family:Oswald;text-transform:uppercase;color:var(--blue);font-size:19px;margin-top:6px}
+.w-term{font-family:Oswald;text-transform:uppercase;font-size:30px;color:var(--blue);margin:-4px 0 12px;line-height:1.1}
+.w-tag{display:inline-block;background:var(--blue);color:#fff;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.05em;padding:5px 12px;border-radius:20px;margin-bottom:14px}
+.turo-box{background:var(--black);border-radius:8px;padding:24px;color:#fff;border-top:4px solid var(--blue);margin-bottom:14px}
+.turo-head{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:16px}
+.turo-name{font-family:Oswald;text-transform:uppercase;font-size:21px}
+.turo-badge{background:var(--blue);font-size:12px;font-weight:700;padding:4px 10px;border-radius:20px}
+.turo-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px;text-align:center}
+.turo-stats div{background:var(--panel);border-radius:6px;padding:12px 6px}
+.turo-stats b{display:block;font-family:Oswald;font-size:24px;color:var(--blue)}
+.turo-stats span{font-size:12px;color:#bbb;text-transform:uppercase}
+.fleet{display:flex;align-items:stretch;background:var(--ink);border-bottom:3px solid var(--blue);overflow:hidden}
+.fleet-label{flex:none;background:var(--blue);color:#fff;font-family:Oswald;text-transform:uppercase;font-size:16px;line-height:1.15;display:flex;align-items:center;padding:0 18px;text-align:center;position:relative;z-index:2;box-shadow:6px 0 14px rgba(0,0,0,.5)}
+.fleet .ticker-viewport{padding:14px 0}
+.fleet-track{gap:0}
+.fleet:hover .fleet-track{animation-play-state:paused}
+.rent-card{display:flex;width:330px;flex:none;margin-right:16px;background:var(--panel);border-radius:6px;overflow:hidden;color:#fff;border:1px solid var(--line);transition:border-color .2s}
+.rent-card:hover{border-color:var(--blue)}
+.rent-card .ph{width:130px;flex:none;background:#2a2a2a;display:flex;align-items:center;justify-content:center}
+.rent-card .ph svg{width:70px;fill:#555}
+.rent-card .in{padding:10px 12px;display:flex;flex-direction:column;justify-content:center;gap:3px;min-width:0}
+.rent-card b{font-family:Oswald;text-transform:uppercase;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.rent-card small{color:#bbb;font-size:12px}
+.rent-card .rt{color:#ffc400;font-size:12px}
+.rent-card .go{color:var(--blue);font-size:12px;font-weight:700;text-transform:uppercase}
+@media(max-width:560px){.fleet-label{font-size:13px;padding:0 10px}.rent-card{width:280px}.rent-card .ph{width:105px}}
+.locs{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:4px 0 18px}
+.loc{display:flex;gap:10px;align-items:flex-start;background:var(--bg);border-left:4px solid var(--blue);border-radius:6px;padding:14px}
+.loc span{font-size:20px;line-height:1}
+.loc b{font-family:Oswald;text-transform:uppercase;font-size:18px;display:block}
+.loc small{color:var(--muted);font-size:13px}
+@media(max-width:560px){.locs{grid-template-columns:1fr}}
+.btn.ghost-d{background:transparent;color:var(--black);border:2px solid var(--black)}
+.btn.ghost-d:hover{background:var(--black);color:#fff}
+.coming h2{font-size:42px;color:var(--blue)}
+
+/* modal */
+.modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.modal.show{display:flex}
+.modal-box{background:#fff;border-radius:8px;max-width:1080px;width:100%;max-height:94vh;overflow:auto;position:relative}
+.modal-box .x{position:absolute;top:8px;right:10px;z-index:3;background:rgba(0,0,0,.6);color:#fff;border:0;width:40px;height:40px;border-radius:50%;font-size:26px;line-height:1;cursor:pointer}
+.m-media{display:grid;grid-template-columns:1fr;gap:6px;background:#000}
+.m-media.has-video{grid-template-columns:1fr 1fr}
+.m-photo{aspect-ratio:16/10;background:#222 center/cover no-repeat}
+.m-video{position:relative;background:#000;display:flex;align-items:center}
+.m-video video{width:100%;height:100%;aspect-ratio:16/10;object-fit:cover;display:block;background:#000}
+.m-vlabel{position:absolute;top:10px;left:10px;background:var(--blue);color:#fff;font-size:11px;font-weight:700;text-transform:uppercase;padding:4px 9px;border-radius:3px;pointer-events:none}
+.m-thumbs{display:flex;gap:8px;padding:10px 14px 0;overflow-x:auto}
+.m-thumbs:empty{display:none}
+.m-th{flex:none;width:86px;height:56px;border-radius:4px;border:2px solid transparent;background:#ddd center/cover;cursor:pointer;padding:0}
+.m-th.on{border-color:var(--blue)}
+.modal-box .det{padding:24px 28px;display:grid;grid-template-columns:1fr 1fr;gap:30px;align-items:start}
+.modal-box .det table{margin:0}
+.pbadge{position:absolute;bottom:0;left:0;right:0;background:rgba(224,161,0,.92);color:#111;font-family:Oswald;text-transform:uppercase;text-align:center;font-size:14px;padding:5px}
+.pill-pend{display:inline-block;margin-top:8px;background:#fff4d6;color:#9a6c00;font-weight:700;font-size:12px;text-transform:uppercase;padding:3px 10px;border-radius:20px}
+.vbadge{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.75);color:#fff;font-size:11px;font-weight:700;padding:4px 8px;border-radius:3px;text-transform:uppercase}
+.modal-box h2{font-size:26px}
+.modal-box table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
+.modal-box td{padding:7px 0;border-bottom:1px solid #eee}
+.modal-box td:first-child{color:var(--muted);font-weight:600}
+.modal-box .acts{display:flex;gap:10px;flex-wrap:wrap}
+.modal-box .acts .btn{flex:1;text-align:center;padding:12px 10px}
+
+footer{background:var(--black);color:#ccc;padding:60px 0 0;border-top:4px solid var(--blue)}
+footer .cols{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px}
+footer h4{font-family:Oswald;text-transform:uppercase;color:#fff;font-size:18px;margin-bottom:14px}
+footer li{list-style:none;margin-bottom:7px}
+footer a:hover{color:var(--blue)}
+footer .bottom{border-top:1px solid var(--line);margin-top:40px;padding:18px 0;font-size:13px;text-align:center;color:#888}
+.call-fab{position:fixed;right:18px;bottom:18px;background:var(--blue);color:#fff;border-radius:40px;padding:13px 20px;font-weight:700;box-shadow:0 6px 20px rgba(0,0,0,.3);z-index:60;font-size:14px}
+
+.page{display:none}
+.page.active{display:block}
+
+@media(max-width:980px){
+  nav{display:none;position:absolute;top:100%;left:0;right:0;background:var(--black);border-top:1px solid var(--line)}
+  nav.open{display:block}
+  nav ul{flex-direction:column;padding:10px 20px}
+  .burger{display:block}
+  .search-bar form{grid-template-columns:1fr 1fr}
+  .welcome .grid,.easy .grid,.two,.inv,footer .cols{grid-template-columns:1fr}
+  .filters{position:static}
+  .bodies{grid-template-columns:repeat(2,1fr)}
+  .m-media.has-video,.modal-box .det{grid-template-columns:1fr}
+  .hero-box h1{font-size:34px}
+}
+@media(max-width:560px){
+  .search-bar form,.form-grid{grid-template-columns:1fr}
+  .topbar .wrap{justify-content:center;gap:10px}
+  .logo img{height:76px}
+  .hero{min-height:440px}
+  .hero-box{text-align:center}.ratings{justify-content:center}
+  .hero .wrap{justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar"><div class="wrap">
+  <span>📍 305 S Tennessee St, Cartersville, GA 30120</span>
+  <a href="tel:7705274067">📞 (770) 527-4067</a>
+  <b>¡Hablamos Español!</b>
+</div></div>
+
+<header><div class="wrap">
+  <a href="#home" class="logo">
+    <img src="https://dcdws.blob.core.windows.net/dws-9988903-83873-media/sites/83873/2026/10/Empire-Auto-Group-Automotive-Logo-w300.png" alt="Empire Auto Group — Quality, Integrity, Fair Pricing">
+  </a>
+  <button class="burger" aria-label="Menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
+  <nav><ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#inventory">Inventory</a></li>
+    <li><a href="#apply">Apply Online</a></li>
+    <li><a href="#rental">Car Rental</a></li>
+    <li><a href="#finder">Car Finder</a></li>
+    <li><a href="#warranty">Warranty</a></li>
+    <li><a href="#about">About Us</a></li>
+    <li><a href="#testimonials">Testimonials</a></li>
+    <li><a href="#contact">Contact Us</a></li>
+  </ul></nav>
+</div></header>
+
+<!-- ============ HOME ============ -->
+<main id="page-home" class="page">
+  <div class="hero"><div class="wrap"><div class="hero-box">
+    <h1>Making Your Buying<br>Experience an Easy One</h1>
+    <div class="ratings">
+      <div>5.0 <span class="stars">★★★★★</span><br>Facebook Reviews</div>
+      <div>4.8 <span class="stars">★★★★★</span><br>Google Reviews</div>
+      <a class="btn" href="#inventory">View Inventory</a>
+    </div>
+  </div></div>
+    <div class="ticker" aria-label="Customer reviews">
+      <div class="ticker-label">★ Reviews</div>
+      <div class="ticker-viewport"><div class="ticker-track" id="tickerTrack"></div></div>
+    </div>
+  </div>
+
+  <div class="search-bar"><div class="wrap">
+    <form onsubmit="return quickSearch(event)">
+      <div><label>Select Year</label><select id="qYear"></select></div>
+      <div><label>Select Make</label><select id="qMake"></select></div>
+      <div><label>Select Model</label><select id="qModel"></select></div>
+      <div><button class="btn" style="width:100%">Search</button></div>
+    </form>
+  </div></div>
+
+  <section class="welcome"><div class="wrap grid">
+    <div>
+      <p class="oswald" style="color:var(--blue);font-size:15px">Let us help you find your next car</p>
+      <h2>Welcome to <span>Empire Auto Group</span>, located in Cartersville, GA</h2>
+      <p>Where quality service and customer satisfaction come first. We are here to help you find a vehicle that fits your lifestyle from our wide selection of used cars, trucks, and SUVs.</p>
+      <p>We pride ourselves on a hassle-free car buying experience where your needs come first. Swing by to let us exceed your expectations while finding the perfect vehicle!</p>
+      <a class="btn" href="#about" style="margin-top:8px">More About Us</a>
+    </div>
+    <div class="mission">
+      <h3>Our Mission Statement</h3>
+      <p><b>Focused on Integrity — Delivering on Service and Price!</b></p>
+      <p>Greed and Deception Have No Place Here. You Will Experience Truth, Honesty, and Integrity. We Value Our Customers and We Value Our Reputation.</p>
+      <p>With a hand-picked selection of quality used cars here in Cartersville and easy auto financing with inventory to match your budget, we are sure you'll find the right used car for you. We will always strive to make your purchase here at Empire Auto Group a happy and memorable one!</p>
+    </div>
+  </div></section>
+
+  <section><div class="wrap">
+    <div class="sec-title"><h2>Shop by Body Style</h2><div class="bar"></div></div>
+    <div class="bodies" id="bodies"></div>
+  </div></section>
+
+  <section style="background:var(--bg)"><div class="wrap">
+    <div class="sec-title"><h2>Featured Vehicles</h2><p>Hand-picked, quality pre-owned — prices include dealer fees.</p><div class="bar"></div></div>
+    <div class="cars" id="featured"></div>
+    <div style="text-align:center;margin-top:34px"><a class="btn" href="#inventory">See All Inventory</a></div>
+  </div></section>
+
+  <section class="reviews"><div class="wrap">
+    <div class="sec-title"><h2>Trusted Dealership</h2><p>What our customers say</p><div class="bar"></div></div>
+    <div class="rev-track" id="homeReviews"></div>
+  </div></section>
+
+  <section class="easy"><div class="wrap">
+    <div class="sec-title"><h2>How Easy Is Buying a Car From Us?</h2><p>We are dedicated to providing you with the ultimate automobile buying experience. We're your #1 source for a quality pre-owned vehicle.</p><div class="bar"></div></div>
+    <div class="grid">
+      <div class="easy-card"><h3>Get Approved Now</h3><p>Easy auto financing with inventory to match your budget. Apply online in minutes and we'll get back to you fast.</p><a class="btn" href="#apply">Apply Online</a></div>
+      <div class="easy-card"><h3>Schedule a Test Drive</h3><p>The best way to make your final decision is to test drive your dream car. Our friendly, experienced staff are here to help!</p><a class="btn" href="#contact">Make an Appointment</a></div>
+    </div>
+  </div></section>
+</main>
+
+<!-- ============ INVENTORY ============ -->
+<main id="page-inventory" class="page">
+  <div class="page-head"><h1>High Quality Car Inventory in Cartersville, GA</h1><div class="crumbs"><a href="#home">Home</a> / Inventory</div></div>
+  <section><div class="wrap inv">
+    <aside class="filters">
+      <h3>Filters</h3>
+      <label>Year</label><select id="fYear"></select>
+      <label>Make</label><select id="fMake"></select>
+      <label>Model</label><select id="fModel"></select>
+      <label>Body Type</label><select id="fBody"></select>
+      <label>Max Price</label><select id="fPrice"><option value="">Any Price</option><option>10000</option><option>12500</option><option>15000</option><option>20000</option></select>
+      <label>Max Mileage</label><select id="fMiles"><option value="">Any Mileage</option><option>100000</option><option>145000</option><option>150000</option><option>175000</option></select>
+      <button class="btn" style="width:100%;margin-top:18px;background:#333" onclick="resetFilters()">Reset</button>
+    </aside>
+    <div>
+      <div class="inv-top"><b id="count"></b>
+        <select id="sort"><option value="">Sort by: Default</option><option value="pa">Price: Low to High</option><option value="pd">Price: High to Low</option><option value="yd">Year: Newest</option><option value="ma">Mileage: Lowest</option></select>
+      </div>
+      <div class="cars" id="invList"></div>
+    </div>
+  </div></section>
+</main>
+
+<!-- ============ APPLY ============ -->
+<main id="page-apply" class="page">
+  <div class="page-head"><h1>Apply Online</h1><div class="crumbs"><a href="#home">Home</a> / Apply Online</div></div>
+  <section><div class="wrap">
+    <form class="form-card app-form" novalidate name="credit-application" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return sendForm(event,'Credit Application')">
+      <input type="hidden" name="form-name" value="credit-application"><p hidden><input name="bot-field"></p>
+      <div class="buyer-tabs"><button type="button" class="on" data-tab="buyer">Buyer</button><button type="button" data-tab="cobuyer">Co-Buyer</button></div>
+      <p class="note" style="margin:0 0 6px">All fields marked with an asterisk (*) are required</p>
+      <div class="tabpane" id="tab-buyer"><h3>Personal Information</h3><div class="form-grid">
+<div><label>First Name *</label><input name="First Name" type="text" required></div><div><label>Last Name *</label><input name="Last Name" type="text" required></div>
+<div><label>Email *</label><input name="Email" type="email" required></div><div><label>Cell Phone *</label><input name="Cell Phone" type="tel" required></div>
+<div><label>Home Phone (Optional)</label><input name="Home Phone" type="tel"></div><div><label>Date of Birth *</label><input name="Date of Birth" type="date" required></div>
+<div><label>SSN *</label><input name="SSN" type="password" required inputmode="numeric" autocomplete="off" maxlength="11" placeholder="XXX-XX-XXXX"></div><div><label>Driver's License Number</label><input name="DL Number" type="text"></div>
+<div><label>Driver's License State</label><select name="DL State"><option value="">State</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>District Of Columbia</option><option>Florida</option><option selected>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></div><div></div>
+<div><label>Driver's License Issue Date</label><input name="DL Issue Date" type="date"></div><div><label>Driver's License Expiry Date</label><input name="DL Expiry Date" type="date"></div>
+</div>
+<h3>Residential Information</h3><div class="form-grid">
+<div class="full"><label>Street Address *</label><input name="Street Address" type="text" required></div>
+<div><label>City *</label><input name="City" type="text" required></div><div><label>State *</label><select name="State" required><option value="">State</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>District Of Columbia</option><option>Florida</option><option selected>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></div>
+<div><label>Zip Code *</label><input name="Zip" type="text" required inputmode="numeric" maxlength="10"></div>
+<div><label>Housing Type *</label><select name="Housing Type" required><option value="">Housing Type</option><option>Rent</option><option>Own</option><option>Other</option></select></div>
+<div><label>Monthly Rent/Mortgage Amount *</label><input name="Monthly Rent/Mortgage" type="text" required inputmode="decimal" placeholder="$"></div>
+<div><label>Time at Address *</label><div class="pair"><select name="Time at Address Years" required><option value="">Years</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option><option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option><option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option><option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option><option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option><option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option><option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option><option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option><option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option><option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option><option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option><option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option><option>98</option><option>99</option><option>100</option></select><select name="Time at Address Months"><option value="">Months</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option></select></div></div>
+</div>
+<label class="tog"><input type="checkbox" data-show="prevAddr"> Add Previous Address</label>
+<div class="form-grid more" id="prevAddr">
+<div class="full"><label>Previous Street Address</label><input name="Prev Street Address" type="text"></div>
+<div><label>City</label><input name="Prev City" type="text"></div><div><label>State</label><select name="Prev State"><option value="">State</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>District Of Columbia</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></div>
+<div><label>Zip Code</label><input name="Prev Zip" type="text"></div><div><label>Time at Previous Address</label><div class="pair"><select name="Time at Prev Address Years"><option value="">Years</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option><option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option><option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option><option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option><option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option><option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option><option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option><option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option><option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option><option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option><option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option><option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option><option>98</option><option>99</option><option>100</option></select><select name="Time at Prev Address Months"><option value="">Months</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option></select></div></div>
+</div>
+<h3>Employment Information</h3><div class="form-grid">
+<div><label>Employer Name *</label><input name="Employer" type="text" required></div><div><label>Title/Position *</label><input name="Title/Position" type="text" required></div>
+<div><label>Employer Phone Number *</label><input name="Employer Phone" type="tel" required></div><div><label>Monthly Gross Income *</label><input name="Monthly Gross Income" type="text" required inputmode="decimal" placeholder="$"></div>
+<div><label>Time at Job *</label><div class="pair"><select name="Time at Job Years" required><option value="">Years</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option><option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option><option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option><option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option><option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option><option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option><option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option><option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option><option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option><option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option><option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option><option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option><option>98</option><option>99</option><option>100</option></select><select name="Time at Job Months"><option value="">Months</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option></select></div></div>
+</div>
+<label class="tog"><input type="checkbox" data-show="prevJob"> Add Previous Employment</label>
+<div class="form-grid more" id="prevJob">
+<div><label>Previous Employer Name</label><input name="Prev Employer" type="text"></div><div><label>Title/Position</label><input name="Prev Title/Position" type="text"></div>
+<div><label>Employer Phone Number</label><input name="Prev Employer Phone" type="tel"></div><div><label>Monthly Gross Income</label><input name="Prev Monthly Income" type="text"></div>
+<div><label>Time at Previous Job</label><div class="pair"><select name="Time at Prev Job Years"><option value="">Years</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option><option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option><option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option><option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option><option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option><option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option><option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option><option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option><option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option><option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option><option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option><option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option><option>98</option><option>99</option><option>100</option></select><select name="Time at Prev Job Months"><option value="">Months</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option></select></div></div>
+</div></div>
+      <div class="tabpane" id="tab-cobuyer" hidden>
+        <label class="tog" style="margin-top:18px"><input type="checkbox" name="Has Co-Buyer" value="Yes" id="hasCo"> I am applying with a co-buyer</label>
+        <div id="coFields" class="more"><h3>Personal Information</h3><div class="form-grid">
+<div><label>First Name</label><input name="Co-Buyer First Name" type="text"></div><div><label>Last Name</label><input name="Co-Buyer Last Name" type="text"></div>
+<div><label>Email</label><input name="Co-Buyer Email" type="email"></div><div><label>Cell Phone</label><input name="Co-Buyer Cell Phone" type="tel"></div>
+<div><label>Home Phone (Optional)</label><input name="Co-Buyer Home Phone" type="tel"></div><div><label>Date of Birth</label><input name="Co-Buyer Date of Birth" type="date"></div>
+<div><label>SSN</label><input name="Co-Buyer SSN" type="password" inputmode="numeric" autocomplete="off" maxlength="11" placeholder="XXX-XX-XXXX"></div><div><label>Driver's License Number</label><input name="Co-Buyer DL Number" type="text"></div>
+<div><label>Driver's License State</label><select name="Co-Buyer DL State"><option value="">State</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>District Of Columbia</option><option>Florida</option><option selected>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></div><div></div>
+<div><label>Driver's License Issue Date</label><input name="Co-Buyer DL Issue Date" type="date"></div><div><label>Driver's License Expiry Date</label><input name="Co-Buyer DL Expiry Date" type="date"></div>
+</div>
+<h3>Residential Information</h3><div class="form-grid">
+<div class="full"><label>Street Address</label><input name="Co-Buyer Street Address" type="text"></div>
+<div><label>City</label><input name="Co-Buyer City" type="text"></div><div><label>State</label><select name="Co-Buyer State"><option value="">State</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>District Of Columbia</option><option>Florida</option><option selected>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></div>
+<div><label>Zip Code</label><input name="Co-Buyer Zip" type="text" inputmode="numeric" maxlength="10"></div>
+<div><label>Housing Type</label><select name="Co-Buyer Housing Type"><option value="">Housing Type</option><option>Rent</option><option>Own</option><option>Other</option></select></div>
+<div><label>Monthly Rent/Mortgage Amount</label><input name="Co-Buyer Monthly Rent/Mortgage" type="text" inputmode="decimal" placeholder="$"></div>
+<div><label>Time at Address</label><div class="pair"><select name="Co-Buyer Time at Address Years"><option value="">Years</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option><option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option><option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option><option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option><option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option><option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option><option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option><option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option><option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option><option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option><option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option><option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option><option>98</option><option>99</option><option>100</option></select><select name="Co-Buyer Time at Address Months"><option value="">Months</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option></select></div></div>
+</div>
+<label class="tog"><input type="checkbox" data-show="Co-Buyer prevAddr"> Add Previous Address</label>
+<div class="form-grid more" id="Co-Buyer prevAddr">
+<div class="full"><label>Previous Street Address</label><input name="Co-Buyer Prev Street Address" type="text"></div>
+<div><label>City</label><input name="Co-Buyer Prev City" type="text"></div><div><label>State</label><select name="Co-Buyer Prev State"><option value="">State</option><option>Alabama</option><option>Alaska</option><option>Arizona</option><option>Arkansas</option><option>California</option><option>Colorado</option><option>Connecticut</option><option>Delaware</option><option>District Of Columbia</option><option>Florida</option><option>Georgia</option><option>Hawaii</option><option>Idaho</option><option>Illinois</option><option>Indiana</option><option>Iowa</option><option>Kansas</option><option>Kentucky</option><option>Louisiana</option><option>Maine</option><option>Maryland</option><option>Massachusetts</option><option>Michigan</option><option>Minnesota</option><option>Mississippi</option><option>Missouri</option><option>Montana</option><option>Nebraska</option><option>Nevada</option><option>New Hampshire</option><option>New Jersey</option><option>New Mexico</option><option>New York</option><option>North Carolina</option><option>North Dakota</option><option>Ohio</option><option>Oklahoma</option><option>Oregon</option><option>Pennsylvania</option><option>Rhode Island</option><option>South Carolina</option><option>South Dakota</option><option>Tennessee</option><option>Texas</option><option>Utah</option><option>Vermont</option><option>Virginia</option><option>Washington</option><option>West Virginia</option><option>Wisconsin</option><option>Wyoming</option></select></div>
+<div><label>Zip Code</label><input name="Co-Buyer Prev Zip" type="text"></div><div><label>Time at Previous Address</label><div class="pair"><select name="Co-Buyer Time at Prev Address Years"><option value="">Years</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option><option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option><option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option><option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option><option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option><option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option><option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option><option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option><option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option><option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option><option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option><option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option><option>98</option><option>99</option><option>100</option></select><select name="Co-Buyer Time at Prev Address Months"><option value="">Months</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option></select></div></div>
+</div>
+<h3>Employment Information</h3><div class="form-grid">
+<div><label>Employer Name</label><input name="Co-Buyer Employer" type="text"></div><div><label>Title/Position</label><input name="Co-Buyer Title/Position" type="text"></div>
+<div><label>Employer Phone Number</label><input name="Co-Buyer Employer Phone" type="tel"></div><div><label>Monthly Gross Income</label><input name="Co-Buyer Monthly Gross Income" type="text" inputmode="decimal" placeholder="$"></div>
+<div><label>Time at Job</label><div class="pair"><select name="Co-Buyer Time at Job Years"><option value="">Years</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option><option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option><option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option><option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option><option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option><option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option><option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option><option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option><option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option><option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option><option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option><option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option><option>98</option><option>99</option><option>100</option></select><select name="Co-Buyer Time at Job Months"><option value="">Months</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option></select></div></div>
+</div>
+<label class="tog"><input type="checkbox" data-show="Co-Buyer prevJob"> Add Previous Employment</label>
+<div class="form-grid more" id="Co-Buyer prevJob">
+<div><label>Previous Employer Name</label><input name="Co-Buyer Prev Employer" type="text"></div><div><label>Title/Position</label><input name="Co-Buyer Prev Title/Position" type="text"></div>
+<div><label>Employer Phone Number</label><input name="Co-Buyer Prev Employer Phone" type="tel"></div><div><label>Monthly Gross Income</label><input name="Co-Buyer Prev Monthly Income" type="text"></div>
+<div><label>Time at Previous Job</label><div class="pair"><select name="Co-Buyer Time at Prev Job Years"><option value="">Years</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option><option>12</option><option>13</option><option>14</option><option>15</option><option>16</option><option>17</option><option>18</option><option>19</option><option>20</option><option>21</option><option>22</option><option>23</option><option>24</option><option>25</option><option>26</option><option>27</option><option>28</option><option>29</option><option>30</option><option>31</option><option>32</option><option>33</option><option>34</option><option>35</option><option>36</option><option>37</option><option>38</option><option>39</option><option>40</option><option>41</option><option>42</option><option>43</option><option>44</option><option>45</option><option>46</option><option>47</option><option>48</option><option>49</option><option>50</option><option>51</option><option>52</option><option>53</option><option>54</option><option>55</option><option>56</option><option>57</option><option>58</option><option>59</option><option>60</option><option>61</option><option>62</option><option>63</option><option>64</option><option>65</option><option>66</option><option>67</option><option>68</option><option>69</option><option>70</option><option>71</option><option>72</option><option>73</option><option>74</option><option>75</option><option>76</option><option>77</option><option>78</option><option>79</option><option>80</option><option>81</option><option>82</option><option>83</option><option>84</option><option>85</option><option>86</option><option>87</option><option>88</option><option>89</option><option>90</option><option>91</option><option>92</option><option>93</option><option>94</option><option>95</option><option>96</option><option>97</option><option>98</option><option>99</option><option>100</option></select><select name="Co-Buyer Time at Prev Job Months"><option value="">Months</option><option>0</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option><option>7</option><option>8</option><option>9</option><option>10</option><option>11</option></select></div></div>
+</div></div>
+      </div>
+      <h3>Interested Vehicle</h3><div class="form-grid">
+        <div class="full"><label>Vehicle</label><select name="Vehicle" id="applyVeh"></select></div>
+        <div><label>Stock Number</label><input name="Stock Number" type="text"></div><div><label>Year</label><input name="Vehicle Year" type="text"></div>
+        <div><label>Make</label><input name="Vehicle Make" type="text"></div><div><label>Model</label><input name="Vehicle Model" type="text"></div>
+        <div><label>Vehicle Price</label><input name="Vehicle Price" type="text" placeholder="$"></div><div><label>Down Payment</label><input name="Down Payment" type="text" placeholder="$"></div>
+        <div><label>Exterior Color</label><input name="Exterior Color" type="text"></div><div><label>Interior Color</label><input name="Interior Color" type="text"></div>
+      </div>
+      <label class="tog"><input type="checkbox" data-show="tradeIn" name="Has Trade-In" value="Yes"> Add Trade-in?</label>
+      <div class="form-grid more" id="tradeIn">
+        <div><label>Year</label><input name="Trade Year" type="text"></div><div><label>Make</label><input name="Trade Make" type="text"></div><div><label>Model</label><input name="Trade Model" type="text"></div><div><label>Mileage</label><input name="Trade Mileage" type="text"></div>
+        <div><label>VIN</label><input name="Trade VIN" type="text"></div><div><label>Payoff Amount (if any)</label><input name="Trade Payoff" type="text" placeholder="$"></div>
+      </div>
+      <div class="disclose">
+        <label class="chk"><input type="checkbox" name="SMS Marketing Consent" value="Yes"> I want to receive marketing text messages on the phone number provided.</label>
+        <label class="chk"><input type="checkbox" name="SMS Non-Marketing Consent" value="Yes"> I want to receive non marketing messages, including updates and news, on the phone number provided.</label>
+        <p>By checking the boxes above, I consent to receive marketing and/or non-marketing text messages from Empire Auto Group LLC at the phone number provided. Message frequency may vary. Message and data rates may apply. Reply HELP for help or STOP to opt-out.</p>
+        <p>I, the undersigned, (a) for the purpose of securing credit, certify that the below representations to be correct; (b) authorize financial institutions, as they consider necessary and appropriate, to obtain consumer credit reports on me periodically and to gather employment history, and (c) understand that we, or any financial institution to whom this application is submitted, will retain this application whether or not it is approved, and that it is the applicant's responsibility to notify the creditor of any change of name, address, or employment. We and any financial institution to whom this application is submitted, may share certain non-public personal information about you with your authorization or as provided by law.</p>
+        <label class="chk"><input type="checkbox" name="Accepted Privacy Policy" value="Yes" required> By submitting this request, I accept the <a href="https://www.empireautoga.com/privacy-policy/" target="_blank" rel="noopener">Privacy Policy</a> *</label>
+      </div>
+      <button class="btn" style="margin-top:20px">Submit</button>
+      <div class="ok">Thank you! Your application has been received. We'll contact you shortly.</div>
+      <div class="err">Sorry — your application couldn't be sent. Please call us at <a href="tel:7705274067">(770) 527-4067</a>.</div>
+    </form>
+  </div></section>
+</main>
+
+<!-- ============ RENTAL ============ -->
+<main id="page-rental" class="page">
+  <div class="page-head"><h1>Car Rental</h1><div class="crumbs"><a href="#home">Home</a> / Car Rental</div></div>
+  <div class="fleet" aria-label="Cars available to rent">
+    <div class="fleet-label">Available<br>to Rent</div>
+    <div class="ticker-viewport"><div class="ticker-track fleet-track" id="fleetTrack"></div></div>
+  </div>
+  <section><div class="wrap two">
+    <div>
+      <h2 style="font-size:30px;margin-bottom:6px">High Quality Car Rentals in Cartersville, GA</h2>
+      <p class="oswald" style="color:var(--blue);margin-bottom:16px">Offering our dedicated rental fleet of vehicles!</p>
+      <p style="margin-bottom:14px">Looking for a reliable and affordable rental car? Our rental service offers a wide selection of vehicles, from compact cars to SUVs, ensuring a perfect fit for your needs. Whether for business, leisure, or special occasions, we provide flexible rates, exceptional customer service, and hassle-free bookings.</p>
+      <p style="margin-bottom:14px">With 2 convenient locations in the metro Atlanta area, we make renting a hassle-free and affordable alternative to the big guys.</p>
+      <div class="locs">
+        <div class="loc"><span>📍</span><div><b>Cartersville</b><small>305 S Tennessee St, Cartersville, GA 30120</small></div></div>
+        <div class="loc"><span>📍</span><div><b>Kennesaw</b><small>Kennesaw, GA</small></div></div>
+      </div>
+      <p style="margin-bottom:22px"><b>No major credit card or major car insurance required</b> — we truly make your car rental needs a reality! Book online through Turo or call us to arrange your next rental today.</p>
+      <div class="turo-box">
+        <div class="turo-head"><span class="turo-name">E.A.G. Rentals on Turo</span><span class="turo-badge">★ All-Star Host</span></div>
+        <div class="turo-stats">
+          <div><b>4.9 ★</b><span>Guest rating</span></div>
+          <div><b>875+</b><span>Trips</span></div>
+          <div><b>4 yrs</b><span>Hosting</span></div>
+        </div>
+        <a class="btn" href="https://turo.com/us/en/host/28653535" target="_blank" rel="noopener" style="width:100%;text-align:center">See Our Cars &amp; Book on Turo →</a>
+      </div>
+      <a class="btn ghost-d" href="tel:7705274067">Or Call (770) 527-4067</a>
+    </div>
+    <form class="form-card" style="margin:0" name="rental-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return sendForm(event,'Car Rental Request')">
+      <input type="hidden" name="form-name" value="rental-request"><p hidden><input name="bot-field"></p>
+      <h3>Prefer to Book Direct?</h3>
+      <p class="note" style="margin:-4px 0 14px">Send us your dates and we'll call you to set it up.</p>
+      <div class="form-grid">
+        <div><label>Name *</label><input name="Name" required></div>
+        <div><label>Phone *</label><input name="Phone" type="tel" required></div>
+        <div><label>Pick-up Date</label><input name="Pick-up" type="date"></div>
+        <div><label>Return Date</label><input name="Return" type="date"></div>
+        <div class="full"><label>Pick-up Location</label><select name="Location"><option>Cartersville</option><option>Kennesaw</option></select></div>
+        <div class="full"><label>Vehicle Type</label><select name="Vehicle Type"><option>Compact / Sedan</option><option>SUV</option><option>Pickup</option><option>No preference</option></select></div>
+        <div class="full"><label>Notes</label><textarea name="Notes"></textarea></div>
+      </div>
+      <button class="btn" style="margin-top:18px">Request Rental</button>
+      <div class="ok">Thanks! We'll call you to confirm availability.</div>
+      <div class="err">Sorry — your message couldn\'t be sent. Please call us at <a href="tel:7705274067">(770) 527-4067</a>.</div>
+    </form>
+  </div></section>
+</main>
+
+<!-- ============ FINDER ============ -->
+<main id="page-finder" class="page">
+  <div class="page-head"><h1>Car Finder</h1><div class="crumbs"><a href="#home">Home</a> / Car Finder</div></div>
+  <section><div class="wrap">
+    <div class="sec-title"><h2>Can't Find What You're Looking For?</h2><div class="bar"></div></div>
+    <div class="finder-intro">
+      <p>We understand that sometimes we might not have the vehicle you're looking for at the moment — and that you want to find it from a <b>trusted source</b>, which is the reason you're here.</p>
+      <p>We'll be glad to go get what you're looking for. With our access to a <b>nationwide database of vehicles</b>, we'll find the right one for you.</p>
+      <p class="finder-cta">Tell us what you want below and we'll get to work.</p>
+    </div>
+    <form class="form-card" name="car-finder" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return sendForm(event,'Car Finder Request')">
+      <input type="hidden" name="form-name" value="car-finder"><p hidden><input name="bot-field"></p>
+      <div class="form-grid">
+        <div><label>Name *</label><input name="Name" required></div>
+        <div><label>Phone *</label><input name="Phone" type="tel" required></div>
+        <div><label>Email</label><input name="Email" type="email"></div>
+        <div><label>Budget</label><input name="Budget" placeholder="$"></div>
+        <div><label>Year Range</label><input name="Years" placeholder="e.g. 2016–2020"></div>
+        <div><label>Make / Model</label><input name="Make/Model" placeholder="e.g. Honda CR-V"></div>
+        <div><label>Max Mileage</label><input name="Max Miles"></div>
+        <div><label>Color / Features</label><input name="Features"></div>
+        <div class="full"><label>Anything else?</label><textarea name="Notes"></textarea></div>
+      </div>
+      <button class="btn" style="margin-top:18px">Find My Car</button>
+      <div class="ok">Got it! We'll reach out when we find a match.</div>
+      <div class="err">Sorry — your message couldn\'t be sent. Please call us at <a href="tel:7705274067">(770) 527-4067</a>.</div>
+    </form>
+  </div></section>
+</main>
+
+<!-- ============ WARRANTY ============ -->
+<main id="page-warranty" class="page">
+  <div class="page-head"><h1>Warranty</h1><div class="crumbs"><a href="#home">Home</a> / Warranty</div></div>
+  <section><div class="wrap">
+    <div class="sec-title"><h2>Drive With Peace of Mind</h2><p>Warranty protection on the vehicles we sell.</p><div class="bar"></div></div>
+    <div class="easy"><div class="grid">
+      <div class="easy-card">
+        <div class="w-tag">Included Free</div>
+        <h3>Free Powertrain Warranty</h3>
+        <div class="w-term">6 Months / 7,500 Miles</div>
+        <p>We provide a <b>FREE 6-month or 7,500-mile powertrain warranty</b> (whichever comes first) on a selection of our vehicles — at no extra cost to you. Please contact us for details on which vehicles qualify.</p>
+        <a class="btn" href="#contact">Contact Us for Details</a>
+      </div>
+      <div class="easy-card">
+        <div class="w-tag" style="background:#fff;color:var(--blue)">Nationwide Coverage</div>
+        <h3>Extended Warranties by ProGuard</h3>
+        <p>We also offer extended warranties through <b>ProGuard</b>, a leading warranty company, with coverage available nationwide — so you're protected wherever the road takes you.</p>
+        <a class="btn" href="tel:7705274067">Call (770) 527-4067</a>
+      </div>
+    </div></div>
+    <p style="text-align:center;margin-top:30px;color:var(--muted)">Ask about warranty options on any vehicle in our <a href="#inventory" style="color:var(--blue);font-weight:700">inventory</a>.</p>
+  </div></section>
+</main>
+
+<!-- ============ ABOUT ============ -->
+<main id="page-about" class="page">
+  <div class="page-head"><h1>About Us</h1><div class="crumbs"><a href="#home">Home</a> / About Us</div></div>
+  <section><div class="wrap two">
+    <div>
+      <h2 style="font-size:30px;margin-bottom:16px">Welcome to Empire Auto Group, located in Cartersville, GA</h2>
+      <p style="margin-bottom:14px">Where quality service and customer satisfaction come first. We are here to help you find a vehicle that fits your lifestyle from our wide selection of used cars, trucks, and SUVs. We pride ourselves on a hassle-free car buying experience where your needs come first.</p>
+      <p style="margin-bottom:14px">Swing by to let us exceed your expectations while finding the perfect vehicle!</p>
+      <div class="mission" style="margin-top:22px"><h3>Our Mission Statement</h3>
+        <p><b>Focused on Integrity — Delivering on Service and Price!</b></p>
+        <p>Greed and Deception Have No Place Here. You Will Experience Truth, Honesty, and Integrity. We Value Our Customers and We Value Our Reputation.</p>
+        <p>With a hand-picked selection of quality used cars here in Cartersville and easy auto financing with inventory to match your budget, we are sure you'll find the right used car for you!</p>
+      </div>
+    </div>
+    <div class="info-box" data-info></div>
+  </div></section>
+</main>
+
+<!-- ============ TESTIMONIALS ============ -->
+<main id="page-testimonials" class="page">
+  <div class="page-head"><h1>Testimonials</h1><div class="crumbs"><a href="#home">Home</a> / Testimonials</div></div>
+  <section class="reviews"><div class="wrap">
+    <div class="sec-title"><h2>5.0 ★ Facebook &nbsp;·&nbsp; 4.8 ★ Google</h2><div class="bar"></div></div>
+    <div class="rev-track" id="allReviews"></div>
+  </div></section>
+</main>
+
+<!-- ============ CONTACT ============ -->
+<main id="page-contact" class="page">
+  <div class="page-head"><h1>Contact Us</h1><div class="crumbs"><a href="#home">Home</a> / Contact Us</div></div>
+  <section><div class="wrap two">
+    <form class="form-card" style="margin:0" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return sendForm(event,'Website Contact / Test Drive')">
+      <input type="hidden" name="form-name" value="contact"><p hidden><input name="bot-field"></p>
+      <h3>Send Us a Message or Book a Test Drive</h3>
+      <div class="form-grid">
+        <div><label>Name *</label><input name="Name" required></div>
+        <div><label>Phone *</label><input name="Phone" type="tel" required></div>
+        <div class="full"><label>Email</label><input name="Email" type="email"></div>
+        <div><label>Preferred Date</label><input name="Date" type="date"></div>
+        <div><label>Preferred Time</label><select name="Time"><option>Morning</option><option>Midday</option><option>Afternoon</option></select></div>
+        <div class="full"><label>Vehicle of Interest</label><select name="Vehicle" id="contactVeh"></select></div>
+        <div class="full"><label>Message</label><textarea name="Message"></textarea></div>
+      </div>
+      <button class="btn" style="margin-top:18px">Send</button>
+      <div class="ok">Thanks! We'll be in touch shortly.</div>
+      <div class="err">Sorry — your message couldn\'t be sent. Please call us at <a href="tel:7705274067">(770) 527-4067</a>.</div>
+    </form>
+    <div>
+      <div class="info-box" data-info></div>
+      <iframe class="map" loading="lazy" src="https://maps.google.com/maps?q=305%20S%20Tennessee%20St%2C%20Cartersville%2C%20GA%2030120&output=embed" title="Map"></iframe>
+    </div>
+  </div></section>
+</main>
+
+<footer><div class="wrap">
+  <div class="cols">
+    <div>
+      <img src="https://dcdws.blob.core.windows.net/dws-9988903-83873-media/sites/83873/2026/10/Empire-Auto-Group-Automotive-Logo-w300.png" alt="Empire Auto Group" style="height:70px;margin-bottom:16px">
+      <h4>How to Reach Us</h4>
+      <p>305 S Tennessee St<br>Cartersville, GA 30120</p>
+      <p style="margin-top:8px"><a href="tel:7705274067">(770) 527-4067</a></p>
+    </div>
+    <div><h4>Get Started</h4><ul>
+      <li><a href="#home">Home</a></li><li><a href="#inventory">Inventory</a></li><li><a href="#apply">Apply Online</a></li>
+      <li><a href="#rental">Car Rental</a></li><li><a href="https://turo.com/us/en/host/28653535" target="_blank" rel="noopener">Book on Turo ↗</a></li><li><a href="#finder">Car Finder</a></li><li><a href="#about">About Us</a></li><li><a href="#contact">Contact Us</a></li>
+    </ul></div>
+    <div><h4>Store Hours</h4><ul>
+      <li>Mon – Sat: 10:00 AM – 6:00 PM</li><li>Sunday: Closed</li>
+    </ul><p style="margin-top:14px"><b style="color:#fff">¡Hablamos Español!</b></p></div>
+  </div>
+  <div class="bottom">© <span id="yr"></span> Empire Auto Group LLC · All prices include dealer fees · Prices and availability subject to change.</div>
+</div></footer>
+
+<!-- Hidden form: sends a short "new application" alert (no SSN/DOB/license) so it's safe to email -->
+<form name="application-alert" data-netlify="true" netlify-honeypot="bot-field" hidden>
+  <input type="hidden" name="form-name" value="application-alert"><input name="bot-field">
+  <input name="Applicant Name"><input name="Phone"><input name="Email"><input name="Vehicle"><input name="Co-Buyer"><input name="Trade-In"><input name="Submitted"><input name="Open Full Application">
+</form>
+<a class="call-fab" href="tel:7705274067">📞 Call Us</a>
+
+<div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="modal-box">
+  <button class="x" onclick="closeModal()" aria-label="Close">×</button>
+  <div id="mMedia" class="m-media"></div>
+  <div id="mThumbs" class="m-thumbs"></div>
+  <div class="det" id="mDet"></div>
+</div></div>
+
+<script>
+/* =========================================================
+   EDIT YOUR INVENTORY HERE
+   Add, remove or change cars in this list. Photos can be any
+   image link. Set featured:true to show a car on the home page.
+   ========================================================= */
+// Form submissions are collected by Netlify Forms (Netlify dashboard → Forms).
+// Your Netlify site name (the part before .netlify.app) — used for the "Open Full Application" link in alert emails.
+const NETLIFY_SITE = "empireautoga";
+
+const IMG = "https://imagescf.dealercenter.net/640/480/";
+
+/* Inventory is loaded live from /api/inventory (managed in the /admin page). */
+let CARS = [];
+const escH=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+const NO_PHOTO="data:image/svg+xml,"+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"><rect width="400" height="300" fill="#e3e5e8"/><text x="200" y="160" font-family="Arial" font-size="22" fill="#888" text-anchor="middle">Photos coming soon</text></svg>');
+
+/* RENTAL FLEET (from your Turo page) — shown in the scrolling strip on the Car Rental page.
+   To add a car: copy a line, paste the car's Turo link and photo link. */
+const TURO_HOST = "https://turo.com/us/en/host/28653535";
+const TP = "https://images.turo.com/media/vehicle/images/";
+const T  = "https://turo.com/us/en/";
+const RENTALS = [
+  {name:"2017 Dodge Grand Caravan", type:"Minivan", seats:7, loc:"Cartersville", rating:"5.0", trips:19, img:TP+"MtlW6H7USniSiMwG7tjV7A.445x238.heic", url:T+"minivan-rental/united-states/cartersville-ga/dodge/grand-caravan/3582670"},
+  {name:"2019 Hyundai Elantra",     type:"Sedan",   seats:5, loc:"Kennesaw",     rating:"5.0", trips:1,  img:TP+"JdaA32SRRdCd6jfDpx4npw.445x238.heic", url:T+"car-rental/united-states/kennesaw-ga/hyundai/elantra/3938223"},
+  {name:"2017 Subaru Impreza",      type:"Sedan",   seats:5, loc:"Cartersville", rating:"5.0", trips:5,  img:TP+"TpNbDg0XRNqKJbiTbuaCSg.445x238.heic", url:T+"car-rental/united-states/cartersville-ga/subaru/impreza/3955067"},
+  {name:"2014 Cadillac SRX",        type:"SUV",     seats:5, loc:"Kennesaw",     rating:"5.0", trips:18, img:TP+"ZOYfZhWtSCeIHZcBIyE8JQ.445x238.heic", url:T+"suv-rental/united-states/kennesaw-ga/cadillac/srx/3603372"},
+  {name:"2014 Honda CR-V",          type:"SUV",     seats:5, loc:"Cartersville", rating:"4.93",trips:32, img:TP+"JffC3QbpTKSqEM8rIKUfbQ.445x238.heic", url:T+"suv-rental/united-states/cartersville-ga/honda/cr-v/3580813"},
+  {name:"2018 Jeep Compass",        type:"SUV",     seats:5, loc:"Cartersville", rating:"4.0", trips:1,  img:TP+"07HRCymdQT2YVWnqnMNrrg.445x238.heic", url:T+"suv-rental/united-states/cartersville-ga/jeep/compass/3976607"},
+];
+
+// source is optional: "Google" or "Facebook" shows a small badge in the scrolling review strip
+const REVIEWS = [
+  {who:"Dana Lynn Thompson", text:"This was by far the best car buying experience I've ever had and I have bought A LOT of cars. I purchased a low mileage 2007 Mustang GT convertible, one owner, no accidents from Empire Auto Group in Cartersville, GA. Practically a unicorn for a Mustang as a lot of used Mustangs have been rode hard and put up wet. Many have had accidents and/or were used in a rental program...the kiss of death especially for a GT! This car is in beautiful condition, the interior and convertible top look like new, and I have had absolutely no mechanical issues. (I've currently been driving it for three weeks.) Ruben was wonderful to deal with, friendly, no pressure, and let me take my time with the car. I never felt rushed. The price was more than fair and quite a bit below KBB even though the car is in immaculate shape. Also, he does not tack on thousands of dollars in \"fees\" like other dealerships!!! I usually buy my cars new because buying used can be dicey. But I wanted a second, fun car at a good price. I highly recommend going to see Ruben if you are looking for a solid used car. Thank you Ruben for making me a very happy ragtop girl!"},
+  {who:"Dawn Cox", text:"We had a great experience! Very easy process and great communication!"},
+  {who:"Sarah Owens", text:"Wonderful experience with Ruben!"},
+  {who:"Marlic Thomas", text:"Great place to buy. Ruben gave me the best deal on my new bmw!"},
+  {who:"Vanessa G", text:"What a fabulous experience! Ruben was super helpful and genuine. I will definitely make a return visit when my son is ready for a new vehicle."},
+];
+
+/* ================= site code below ================= */
+const $=s=>document.querySelector(s);
+const money=n=>"$"+n.toLocaleString();
+const title=c=>`${c.year} ${c.make} ${c.model}`;
+const uniq=(arr)=>[...new Set(arr)].sort();
+
+const BODY_ICONS={
+  Minivan:'<svg viewBox="0 0 120 50"><path d="M6 34V20l14-10h70l16 12 8 3 2 9v4h-12a9 9 0 0 0-18 0H38a9 9 0 0 0-18 0H6z"/><circle cx="29" cy="38" r="7"/><circle cx="91" cy="38" r="7"/></svg>',
+  SUV:'<svg viewBox="0 0 120 50"><path d="M8 34v-9l8-3 10-12h52l14 12 16 3 4 9v4h-10a9 9 0 0 0-18 0H38a9 9 0 0 0-18 0H8z"/><circle cx="29" cy="38" r="7"/><circle cx="91" cy="38" r="7"/></svg>',
+  Sedan:'<svg viewBox="0 0 120 50"><path d="M6 34v-7l14-4 16-11h36l18 11 20 4 4 7v4h-12a9 9 0 0 0-18 0H38a9 9 0 0 0-18 0H6z"/><circle cx="29" cy="38" r="7"/><circle cx="91" cy="38" r="7"/></svg>',
+  Coupe:'<svg viewBox="0 0 120 50"><path d="M6 34v-6l18-5 20-10h28l20 10 18 4 4 7v4h-12a9 9 0 0 0-18 0H38a9 9 0 0 0-18 0H6z"/><circle cx="29" cy="38" r="7"/><circle cx="91" cy="38" r="7"/></svg>',
+  Pickup:'<svg viewBox="0 0 120 50"><path d="M6 34V22h56V10h26l12 12 14 3 2 9v4h-12a9 9 0 0 0-18 0H38a9 9 0 0 0-18 0H6z"/><circle cx="29" cy="38" r="7"/><circle cx="91" cy="38" r="7"/></svg>',
+};
+
+function carCard(c){
+  return `<div class="car">
+    <div class="img" style="background-image:url('${c.img}')"><span class="tag">${c.body}</span>${c.video?'<span class="vbadge">▶ Video</span>':''}${c.status==="pending"?'<span class="pbadge">Sale Pending</span>':''}</div>
+    <div class="body">
+      <h3>${title(c)}</h3><div class="trim">${c.trim}</div>
+      <div class="price">${c.price?money(c.price)+" *":"Call for Price"}</div><div class="fee">${c.price?"*Includes Dealer Fees":"&nbsp;"}</div>
+      <div class="specs">
+        <span><b>Year</b>${c.year}</span><span><b>Mileage</b>${c.miles?c.miles.toLocaleString()+" mi":"—"}</span>
+        <span><b>Stock #</b>${c.stock}</span><span><b>Body</b>${c.body}</span>
+      </div>
+      <button class="btn" onclick="openCar('${c.id}')">View Details</button>
+    </div></div>`;
+}
+
+function openCar(stock){
+  const c=CARS.find(x=>x.id===stock);const photos=c.photos&&c.photos.length?c.photos:[c.img];
+  $("#mMedia").className="m-media"+(c.video?" has-video":"");
+  $("#mMedia").innerHTML=`<div class="m-photo" id="mMain" style="background-image:url('${photos[0]}')"></div>`+
+    (c.video?`<div class="m-video"><video id="mVid" src="${c.video}" autoplay muted loop playsinline controls preload="auto"></video><span class="m-vlabel">▶ Walk-around video</span></div>`:"");
+  $("#mThumbs").innerHTML=photos.length>1?photos.map((p,i)=>`<button class="m-th${i?"":" on"}" style="background-image:url('${p}')" onclick="setPhoto(this,${i})" aria-label="Photo ${i+1}"></button>`).join(""):"";
+  $("#mThumbs").dataset.stock=stock;
+  $("#mDet").innerHTML=`<div><h2>${title(c)}</h2><div class="trim" style="color:var(--muted)">${c.trim}</div>${c.status==="pending"?'<div class="pill-pend">Sale Pending</div>':""}
+   <div class="price" style="font-family:Oswald;font-size:32px;color:var(--blue);margin-top:10px">${c.price?money(c.price)+" *":"Call for Price"}</div>
+   ${c.price?'<div style="font-size:12px;color:var(--muted)">*Includes Dealer Fees</div>':''}
+   <div class="acts" style="margin-top:16px"><a class="btn" href="tel:7705274067">Call Now</a><a class="btn" style="background:#222" href="#contact" onclick="pick('${c.id}')">Test Drive</a><a class="btn" style="background:#222" href="#apply" onclick="pick('${c.id}')">Get Approved</a></div></div>
+   <table><tr><td>Year</td><td>${c.year}</td></tr><tr><td>Make</td><td>${c.make}</td></tr><tr><td>Model</td><td>${c.model}</td></tr>
+   <tr><td>Trim</td><td>${c.trim}</td></tr><tr><td>Body</td><td>${c.body}</td></tr><tr><td>Mileage</td><td>${c.miles?c.miles.toLocaleString()+" mi":"—"}</td></tr><tr><td>Stock #</td><td>${c.stock||"—"}</td></tr>${[["Engine",c.engine],["Drivetrain",c.drivetrain],["Transmission",c.transmission],["Fuel",c.fuel],["Exterior",c.extColor],["Interior",c.intColor],["VIN",c.vin]].filter(r=>r[1]).map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table>
+   ${c.description?`<p style="grid-column:1/-1;color:#3a3d42;white-space:pre-line">${c.description}</p>`:""}`;
+  $("#modal").classList.add("show");
+  const v=$("#mVid");if(v){v.play&&v.play().catch(()=>{});}
+}
+function setPhoto(btn,i){const c=CARS.find(x=>x.id===$("#mThumbs").dataset.stock);$("#mMain").style.backgroundImage=`url('${(c.photos.length?c.photos:[c.img])[i]}')`;document.querySelectorAll(".m-th").forEach(b=>b.classList.toggle("on",b===btn))}
+document.addEventListener("change",e=>{if(e.target.id!=="applyVeh")return;const c=CARS.find(x=>title(x)===e.target.value);if(!c)return;const F=e.target.form.elements;F["Stock Number"].value=c.stock;F["Vehicle Year"].value=c.year;F["Vehicle Make"].value=c.make;F["Vehicle Model"].value=c.model;F["Vehicle Price"].value=money(c.price);});
+function closeModal(){$("#modal").classList.remove("show");const v=$("#mVid");if(v)v.pause()}
+function pick(id){closeModal();const t=title(CARS.find(c=>c.id===id));["#applyVeh","#contactVeh"].forEach(s=>{$(s).value=t;$(s).dispatchEvent(new Event("change",{bubbles:true}))})}
+
+function fill(sel,label,vals){$(sel).innerHTML=`<option value="">${label}</option>`+vals.map(v=>`<option>${v}</option>`).join("")}
+
+function revHTML(r){const long=r.text.length>260;return `<div class="rev ${long?'long':''}"><div class="stars">★★★★★</div><p>${r.text}</p>${long?'<button class="more" onclick="this.parentElement.classList.toggle(\'open\');this.textContent=this.parentElement.classList.contains(\'open\')?\'Show less\':\'Read more\'">Read more</button>':''}<div class="who">— ${r.who}</div></div>`}
+
+const INFO=`<h3>Dealer Information</h3><p>305 S Tennessee St<br>Cartersville, GA 30120<br><a href="tel:7705274067" style="color:#fff;font-weight:700">(770) 527-4067</a></p>
+ <p style="margin-top:6px"><b>¡Hablamos Español!</b></p>
+ <h3 style="margin-top:22px">Business Hours</h3><ul class="hours">${["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"].map(d=>`<li><span>${d}</span><span>10:00 AM – 6:00 PM</span></li>`).join("")}<li><span>Sunday</span><span>Closed</span></li></ul>`;
+
+function renderInv(){
+  const f={year:$("#fYear").value,make:$("#fMake").value,model:$("#fModel").value,body:$("#fBody").value,price:+$("#fPrice").value||0,miles:+$("#fMiles").value||0};
+  let list=CARS.filter(c=>(!f.year||c.year==f.year)&&(!f.make||c.make==f.make)&&(!f.model||c.model==f.model)&&(!f.body||c.body==f.body)&&(!f.price||c.price<=f.price)&&(!f.miles||c.miles<=f.miles));
+  const s=$("#sort").value;
+  if(s=="pa")list.sort((a,b)=>a.price-b.price);if(s=="pd")list.sort((a,b)=>b.price-a.price);
+  if(s=="yd")list.sort((a,b)=>b.year-a.year);if(s=="ma")list.sort((a,b)=>a.miles-b.miles);
+  $("#count").textContent=`${list.length} Available Vehicle${list.length==1?"":"s"}`;
+  $("#invList").innerHTML=list.length?list.map(carCard).join(""):`<p>No vehicles match those filters. <a href="#finder" style="color:var(--blue);font-weight:700">Let our Car Finder search for you →</a></p>`;
+}
+function resetFilters(){["#fYear","#fMake","#fModel","#fBody","#fPrice","#fMiles","#sort"].forEach(s=>$(s).value="");renderInv()}
+
+function quickSearch(e){e.preventDefault();resetFilters();$("#fYear").value=$("#qYear").value;$("#fMake").value=$("#qMake").value;$("#fModel").value=$("#qModel").value;location.hash="inventory";renderInv();return false}
+function bodySearch(b){resetFilters();$("#fBody").value=b;location.hash="inventory";renderInv()}
+
+function sendForm(e,subject){
+  e.preventDefault();const form=e.target;
+  const bad=[...form.elements].find(el=>el.willValidate&&!el.checkValidity());
+  if(bad){const pane=bad.closest(".tabpane");if(pane&&pane.hidden)showTab(pane.id.replace("tab-",""));bad.reportValidity();return false}
+  const ok=form.querySelector(".ok"),err=form.querySelector(".err");ok.style.display=err.style.display="none";
+  const btn=form.querySelector("button:not([type=button])");btn.disabled=true;btn.textContent="Sending…";
+  fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(new FormData(form)).toString()})
+    .then(r=>{if(!r.ok)throw 0;
+      if(form.name==="credit-application"){const F=form.elements;
+        const alert={"form-name":"application-alert","Applicant Name":F["First Name"].value+" "+F["Last Name"].value,"Phone":F["Cell Phone"].value,"Email":F["Email"].value,
+          "Vehicle":F["Vehicle"].value||[F["Vehicle Year"].value,F["Vehicle Make"].value,F["Vehicle Model"].value].join(" ").trim()||"Not specified",
+          "Co-Buyer":F["Has Co-Buyer"].checked?"Yes — "+F["Co-Buyer First Name"].value+" "+F["Co-Buyer Last Name"].value:"No",
+          "Trade-In":F["Has Trade-In"].checked?"Yes":"No","Submitted":new Date().toLocaleString(),"Open Full Application":NETLIFY_SITE?`https://app.netlify.com/projects/${NETLIFY_SITE}/forms`:"https://app.netlify.com"};
+        return fetch("/",{method:"POST",headers:{"Content-Type":"application/x-www-form-urlencoded"},body:new URLSearchParams(alert).toString()}).catch(()=>{});}
+    }).then(()=>{ok.style.display="block";form.reset();form.querySelectorAll(".more").forEach(m=>m.classList.remove("open"));})
+    .catch(()=>{err.style.display="block"})
+    .finally(()=>{btn.disabled=false;btn.textContent=btn.dataset.label});
+  return false;
+}
+function showTab(t){document.querySelectorAll(".buyer-tabs button").forEach(b=>b.classList.toggle("on",b.dataset.tab===t));document.querySelectorAll(".tabpane").forEach(p=>p.hidden=p.id!=="tab-"+t)}
+document.querySelectorAll(".buyer-tabs button").forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
+document.querySelectorAll("[data-show]").forEach(c=>c.addEventListener("change",()=>document.getElementById(c.dataset.show).classList.toggle("open",c.checked)));
+document.getElementById("hasCo").addEventListener("change",e=>document.getElementById("coFields").classList.toggle("open",e.target.checked));
+document.querySelectorAll("form button:not([type=button])").forEach(b=>b.dataset.label=b.textContent);
+
+function route(){
+  const p=(location.hash||"#home").slice(1);
+  const page=document.getElementById("page-"+p)?p:"home";
+  document.querySelectorAll(".page").forEach(el=>el.classList.toggle("active",el.id==="page-"+page));
+  document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+page));
+  document.querySelector("nav").classList.remove("open");
+  window.scrollTo(0,0);
+}
+
+// init
+$("#homeReviews").innerHTML=REVIEWS.slice(0,3).map(revHTML).join("");
+$("#allReviews").innerHTML=REVIEWS.map(revHTML).join("");
+(function(){
+  const short=t=>t.length>140?t.slice(0,t.lastIndexOf(" ",137))+"…":t;
+  const items=REVIEWS.map(r=>`<a class="ticker-item" href="#testimonials">${r.source?`<span class="src">${r.source}</span>`:""}<span class="stars">★★★★★</span><i>“${short(r.text)}”</i><b>— ${r.who}</b></a>`).join("");
+  const t=$("#tickerTrack");t.innerHTML=items+items; // doubled for a seamless loop
+  requestAnimationFrame(()=>t.style.setProperty("--dur",Math.max(30,t.scrollWidth/2/60)+"s")); // ~60px per second
+})();
+(function(){
+  const icon=BODY_ICONS.SUV;
+  const cards=RENTALS.map(c=>`<a class="rent-card" href="${c.url}" target="_blank" rel="noopener">
+    <div class="ph"><img src="${c.img}" alt="${c.name}" style="width:100%;height:100%;object-fit:cover" onerror="this.replaceWith(document.createRange().createContextualFragment('${icon.replace(/'/g,"\\'")}'))"></div>
+    <div class="in"><b>${c.name}</b><small>${c.type} · ${c.seats} seats · 📍 ${c.loc}</small>
+    <span class="rt">★ ${c.rating} <small>(${c.trips} trip${c.trips==1?"":"s"})</small></span><span class="go">Book on Turo →</span></div></a>`).join("");
+  const t=$("#fleetTrack");t.innerHTML=cards+cards;
+  requestAnimationFrame(()=>t.style.setProperty("--dur",Math.max(25,t.scrollWidth/2/45)+"s"));
+})();
+document.querySelectorAll("[data-info]").forEach(el=>el.innerHTML=INFO);
+["#fYear","#fMake","#fModel","#fBody","#fPrice","#fMiles","#sort"].forEach(s=>$(s).addEventListener("change",renderInv));
+$("#yr").textContent=new Date().getFullYear();
+route();window.addEventListener("hashchange",route);
+function initInventory(){
+fill("#qYear","Any Year",uniq(CARS.map(c=>c.year)));fill("#qMake","Any Make",uniq(CARS.map(c=>c.make)));fill("#qModel","Any Model",uniq(CARS.map(c=>c.model)));
+fill("#fYear","Any Year",uniq(CARS.map(c=>c.year)));fill("#fMake","Any Make",uniq(CARS.map(c=>c.make)));fill("#fModel","Any Model",uniq(CARS.map(c=>c.model)));fill("#fBody","Any Body Type",uniq(CARS.map(c=>c.body)));
+["#applyVeh","#contactVeh"].forEach(s=>fill(s,"— Select a vehicle (optional) —",CARS.map(title)));
+$("#bodies").innerHTML=["SUV","Coupe","Pickup","Sedan"].map(b=>`<div class="body-card" onclick="bodySearch('${b}')">${BODY_ICONS[b]}<b>${b}</b></div>`).join("");
+$("#featured").innerHTML=CARS.filter(c=>c.featured).map(carCard).join("");
+  renderInv();
+  if(location.hash==="#inventory")renderInv();
+}
+fetch("/api/inventory").then(r=>{if(!r.ok)throw 0;return r.json()}).then(list=>{
+  CARS=list.map(c=>{const o={};for(const k in c)o[k]=typeof c[k]==="string"?escH(c[k]):c[k];
+    o.photos=(c.photos||[]).map(escH);o.img=o.photos[0]||NO_PHOTO;return o;});
+}).catch(()=>{$("#invList").innerHTML='<p>Inventory is temporarily unavailable — please call us at <a href="tel:7705274067" style="color:var(--blue);font-weight:700">(770) 527-4067</a>.</p>';})
+  .finally(initInventory);
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
+</script>
+</body>
+</html>

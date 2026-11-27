@@ -1,0 +1,11 @@
+[build]
+  publish = "public"
+  functions = "netlify/functions"
+  command = "echo 'No build step'"
+
+# Keep the admin page out of search engines
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+    Cache-Control = "no-store"

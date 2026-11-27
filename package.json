@@ -1,0 +1,9 @@
+{
+  "name": "empireautoga-site",
+  "private": true,
+  "type": "module",
+  "description": "Empire Auto Group website with private inventory admin",
+  "dependencies": {
+    "@netlify/blobs": "^8.1.0"
+  }
+}
