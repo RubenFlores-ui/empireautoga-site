@@ -117,7 +117,21 @@ main{max-width:1100px;margin:0 auto;padding:20px 16px 80px}
     </div>
 
     <div class="sec">
-      <h3>2. Vehicle details</h3>
+      <h3>2. Carfax &amp; CarGurus</h3>
+      <div class="grid">
+        <div class="w2"><label>Carfax report link</label><input id="carfaxUrl" type="url" placeholder="Paste the car's Carfax report link here"></div>
+        <div><label>Carfax value badge</label><select id="carfaxValue"><option value="">None</option><option value="great">Great Value</option><option value="good">Good Value</option><option value="fair">Fair Value</option><option value="1own_great">1-Owner Great Value</option><option value="1own_good">1-Owner Good Value</option><option value="1own_fair">1-Owner Fair Value</option></select></div>
+      </div>
+      <div class="vin-row" style="margin-top:10px">
+        <button class="btn sm dark" type="button" id="cfxLookup">🔎 Look up this VIN on Carfax</button>
+        <button class="btn sm ghost" type="button" id="cfxTest">Test link</button>
+        <span id="cfxBadgePrev"></span>
+      </div>
+      <div class="note">Get the report link from DealerCenter or your Carfax dealer account and paste it above. The CarGurus deal rating shows on the website automatically once the VIN and price are filled in (for Good Deals or better).</div>
+    </div>
+
+    <div class="sec">
+      <h3>3. Vehicle details</h3>
       <div class="grid">
         <div><label>Year *</label><input id="year" inputmode="numeric"></div>
         <div><label>Make *</label><input id="make"></div>
@@ -134,7 +148,7 @@ main{max-width:1100px;margin:0 auto;padding:20px 16px 80px}
     </div>
 
     <div class="sec">
-      <h3>3. Your details</h3>
+      <h3>4. Your details</h3>
       <div class="grid">
         <div><label>Price (incl. dealer fees)</label><input id="price" inputmode="numeric" placeholder="Blank = Call for Price"></div>
         <div><label>Mileage</label><input id="miles" inputmode="numeric"></div>
@@ -143,22 +157,19 @@ main{max-width:1100px;margin:0 auto;padding:20px 16px 80px}
         <div><label>Interior color</label><input id="intColor"></div>
         <div><label>Status</label><select id="status"><option value="available">Available</option><option value="pending">Sale pending</option><option value="sold">Sold (hidden from site)</option></select></div>
         <div class="w3"><label>Description / notes for shoppers</label><textarea id="description" placeholder="One owner, clean Carfax, new tires…"></textarea></div>
-        <div class="w2"><label>Carfax report link</label><input id="carfaxUrl" type="url" placeholder="https://www.carfax.com/vehiclehistory/…"></div>
-        <div><label>Carfax value badge</label><select id="carfaxValue"><option value="">None</option><option value="great">Great Value</option><option value="good">Good Value</option><option value="fair">Fair Value</option><option value="1own_great">1-Owner Great Value</option><option value="1own_good">1-Owner Good Value</option><option value="1own_fair">1-Owner Fair Value</option></select></div>
-        <div class="w3 note" style="margin-top:-4px">The CarGurus deal rating shows automatically on the website when the VIN and price are filled in (for Good Deals or better).</div>
         <div class="w3"><label class="switch"><input type="checkbox" id="featured"> Show in "Featured Vehicles" on the home page</label></div>
       </div>
     </div>
 
     <div class="sec">
-      <h3>4. Photos</h3>
+      <h3>5. Photos</h3>
       <div class="photos" id="photos"></div>
       <input type="file" id="photoInput" accept="image/*" multiple hidden>
       <div class="note">The first photo is the main photo. Use ◀ ▶ to reorder. Photos are resized automatically before upload.</div>
     </div>
 
     <div class="sec">
-      <h3>5. Walk-around video</h3>
+      <h3>6. Walk-around video</h3>
       <div class="vid-box">
         <div id="vidPreview"></div>
         <div>
@@ -230,7 +241,7 @@ function renderList() {
   $("#list").innerHTML = rows.length ? rows.map((c) => `
     <div class="row">
       <div class="th" style="background-image:url('${esc(c.photos[0] || "")}')">${c.video ? '<span class="v">▶ VIDEO</span>' : ""}</div>
-      <div><h3>${esc(c.year)} ${esc(c.make)} ${esc(c.model)} <span class="pill ${esc(c.status)}">${c.status === "pending" ? "Sale pending" : esc(c.status)}</span>${c.featured ? '<span class="pill feat">Featured</span>' : ""}</h3>
+      <div><h3>${esc(c.year)} ${esc(c.make)} ${esc(c.model)} <span class="pill ${esc(c.status)}">${c.status === "pending" ? "Sale pending" : esc(c.status)}</span>${c.featured ? '<span class="pill feat">Featured</span>' : ""}${c.carfaxUrl ? '<span class="pill feat">Carfax ✓</span>' : '<span class="pill pending">No Carfax</span>'}</h3>
         <div class="meta">${esc(money(c.price))} · ${c.miles ? Number(c.miles).toLocaleString() + " mi" : "— mi"} · Stock #${esc(c.stock || "—")} · ${c.photos.length} photo${c.photos.length === 1 ? "" : "s"}</div></div>
       <div class="acts">
         <button class="btn sm" data-edit="${esc(c.id)}">Edit</button>
@@ -261,7 +272,7 @@ function openEditor(c) {
   $("#edTitle").textContent = c ? `Edit ${c.year} ${c.make} ${c.model}` : "Add Vehicle";
   $("#delBtn").style.display = c ? "inline-flex" : "none";
   $("#vinNote").className = "note"; $("#vinNote").textContent = "Enter or scan the VIN, then tap Decode — year, make, model, trim and specs fill in automatically.";
-  renderPhotos(); renderVideo(); show("editor");
+  renderPhotos(); renderVideo(); cfxPreview(); show("editor");
 }
 $("#addBtn").onclick = () => openEditor(null);
 $("#backBtn").onclick = $("#cancelBtn").onclick = () => { if (busy) return toast("Please wait for uploads to finish"); show("listView"); };
@@ -309,6 +320,13 @@ $("#scanBtn").onclick = async () => {
 };
 function stopScan() { try { reader && reader.reset(); } catch {} reader = null; $("#scanner").style.display = "none"; }
 $("#scanClose").onclick = stopScan;
+
+/* Carfax helpers */
+function cfxPreview(){const v=$("#carfaxValue").value;$("#cfxBadgePrev").innerHTML=v?`<img src="https://partnerstatic.carfax.com/img/valuebadge/${esc(v)}.svg" alt="" height="34" style="vertical-align:middle">`:"";}
+$("#carfaxValue").onchange=cfxPreview;
+$("#cfxLookup").onclick=()=>{const vin=$("#vin").value.trim();if(vin.length!==17)return toast("Enter the 17-character VIN first");window.open("https://www.carfax.com/VehicleHistory/p/Report.cfx?vin="+encodeURIComponent(vin),"_blank","noopener");};
+$("#cfxTest").onclick=()=>{const u=$("#carfaxUrl").value.trim();if(!/^https:\/\/(www\.)?carfax\.com\//i.test(u))return toast("That doesn't look like a Carfax link (it should start with https://www.carfax.com/)",3500);window.open(u,"_blank","noopener");};
+$("#carfaxUrl").addEventListener("change",e=>{const u=e.target.value.trim();if(u&&!/^https:\/\/(www\.)?carfax\.com\//i.test(u))toast("Carfax links must start with https://www.carfax.com/ — otherwise it won't be saved",4000);});
 
 /* Photos */
 function renderPhotos() {
