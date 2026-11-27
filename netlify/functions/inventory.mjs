@@ -3,11 +3,11 @@
 //   PUT  -> admin saves the whole list
 import { getStore } from "@netlify/blobs";
 import { isAdmin, denied } from "../lib/auth.mjs";
-import { SEED } from "../lib/seed.mjs";
+import { loadCars } from "../lib/seed.mjs";
 
 const store = () => getStore({ name: "inventory", consistency: "strong" });
 
-const STR = ["id", "vin", "make", "model", "trim", "body", "stock", "extColor", "intColor", "engine", "drivetrain", "transmission", "fuel", "doors", "description", "video", "status"];
+const STR = ["id", "vin", "make", "model", "trim", "body", "stock", "extColor", "intColor", "engine", "drivetrain", "transmission", "fuel", "doors", "description", "video", "status", "carfaxUrl", "carfaxValue"];
 const STATUS = ["available", "pending", "sold"];
 
 function clean(list) {
@@ -23,6 +23,8 @@ function clean(list) {
     out.featured = Boolean(c.featured);
     out.photos = (Array.isArray(c.photos) ? c.photos : []).map(String).slice(0, 40);
     if (!STATUS.includes(out.status)) out.status = "available";
+    if (!/^https:\/\/(www\.)?carfax\.com\//i.test(out.carfaxUrl)) out.carfaxUrl = "";
+    if (!["", "great", "good", "fair", "1own_great", "1own_good", "1own_fair"].includes(out.carfaxValue)) out.carfaxValue = "";
     if (!out.id) out.id = crypto.randomUUID();
     out.updated = c.updated || new Date().toISOString();
     return out;
@@ -35,7 +37,7 @@ export default async (req) => {
   if (req.method === "GET") {
     const all = new URL(req.url).searchParams.get("all") === "1";
     if (all && !isAdmin(req)) return denied();
-    const list = (await s.get("cars", { type: "json" })) ?? SEED;
+    const list = await loadCars();
     const out = all ? list : list.filter((c) => c.status !== "sold");
     return Response.json(out, { headers: { "Cache-Control": "no-store" } });
   }

@@ -112,7 +112,7 @@ export function carJsonLd(c, url) {
 }
 
 export const slugify = (s) => String(s).toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
-export const carPath = (c) => `/inventory/${slugify(c.make)}/${slugify(c.model)}/${encodeURIComponent(c.stock || c.id)}/`;
+export const carPath = (c) => `/inventory/${slugify(c.make)}/${slugify(c.model)}/${encodeURIComponent(String(c.stock || c.id).toLowerCase())}/`;
 export { titleCase, escAttr };
 
 // Keep only one page's <main> section, so each URL has one H1 and only its own content.

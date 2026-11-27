@@ -1,15 +1,14 @@
 // Server-rendered vehicle pages: /inventory/<make>/<model>/<stock>/
 // Each car gets its own URL with its own title, description, photo preview and Car + Offer structured data.
-import { getStore } from "@netlify/blobs";
 import TEMPLATE from "../lib/site-template.mjs";
-import { SEED } from "../lib/seed.mjs";
+import { loadCars } from "../lib/seed.mjs";
 import { SITE, PAGES, headTags, dealerJsonLd, carJsonLd, carPath, titleCase, pageHtml } from "../lib/seo.mjs";
 
 export default async (req, context) => {
   const { stock } = context.params;
-  const list = (await getStore({ name: "inventory", consistency: "strong" }).get("cars", { type: "json" })) ?? SEED;
-  const want = decodeURIComponent(stock || "");
-  const car = list.find((c) => (c.stock || c.id) === want && c.status !== "sold");
+  const list = await loadCars();
+  const want = decodeURIComponent(stock || "").toLowerCase();
+  const car = list.find((c) => String(c.stock || c.id).toLowerCase() === want && c.status !== "sold");
 
   if (!car) {
     const head = headTags({ title: "Vehicle No Longer Available | Empire Auto Group", desc: PAGES.inventory.desc, url: SITE + "/inventory/", noindex: true, jsonld: [dealerJsonLd()] });

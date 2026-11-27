@@ -143,6 +143,9 @@ main{max-width:1100px;margin:0 auto;padding:20px 16px 80px}
         <div><label>Interior color</label><input id="intColor"></div>
         <div><label>Status</label><select id="status"><option value="available">Available</option><option value="pending">Sale pending</option><option value="sold">Sold (hidden from site)</option></select></div>
         <div class="w3"><label>Description / notes for shoppers</label><textarea id="description" placeholder="One owner, clean Carfax, new tires…"></textarea></div>
+        <div class="w2"><label>Carfax report link</label><input id="carfaxUrl" type="url" placeholder="https://www.carfax.com/vehiclehistory/…"></div>
+        <div><label>Carfax value badge</label><select id="carfaxValue"><option value="">None</option><option value="great">Great Value</option><option value="good">Good Value</option><option value="fair">Fair Value</option><option value="1own_great">1-Owner Great Value</option><option value="1own_good">1-Owner Good Value</option><option value="1own_fair">1-Owner Fair Value</option></select></div>
+        <div class="w3 note" style="margin-top:-4px">The CarGurus deal rating shows automatically on the website when the VIN and price are filled in (for Good Deals or better).</div>
         <div class="w3"><label class="switch"><input type="checkbox" id="featured"> Show in "Featured Vehicles" on the home page</label></div>
       </div>
     </div>
@@ -248,7 +251,7 @@ $("#list").addEventListener("click", async (e) => {
 async function saveAll() { await api("/api/inventory", { method: "PUT", headers: { "Content-Type": "application/json" }, body: JSON.stringify(CARS) }); }
 
 /* ---------- editor ---------- */
-const FIELDS = ["vin", "year", "make", "model", "trim", "body", "engine", "drivetrain", "transmission", "fuel", "doors", "price", "miles", "stock", "extColor", "intColor", "status", "description"];
+const FIELDS = ["vin", "year", "make", "model", "trim", "body", "engine", "drivetrain", "transmission", "fuel", "doors", "price", "miles", "stock", "extColor", "intColor", "status", "description", "carfaxUrl", "carfaxValue"];
 function openEditor(c) {
   cur = c ? structuredClone(c) : { id: crypto.randomUUID(), photos: [], video: "", status: "available", featured: false, body: "SUV" };
   cur.isNew = !c;

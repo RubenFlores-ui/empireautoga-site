@@ -226,6 +226,12 @@ section{padding:80px 0}
 .modal-box .det table{margin:0}
 .pbadge{position:absolute;bottom:0;left:0;right:0;background:rgba(224,161,0,.92);color:#111;font-family:Oswald;text-transform:uppercase;text-align:center;font-size:14px;padding:5px}
 .pill-pend{display:inline-block;margin-top:8px;background:#fff4d6;color:#9a6c00;font-weight:700;font-size:12px;text-transform:uppercase;padding:3px 10px;border-radius:20px}
+.badges{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin:10px 0 2px;min-height:0}
+.badges.big{margin:12px 0 4px}
+.badges img{display:block}
+.cfx{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#1d1d1f;border:1px solid #dfe2e6;border-radius:6px;padding:3px 8px;background:#fff}
+.cfx b{font-family:Arial,sans-serif;letter-spacing:-.02em}
+.cfx:hover{border-color:var(--blue);color:var(--blue)}
 .vbadge{position:absolute;top:10px;right:10px;background:rgba(0,0,0,.75);color:#fff;font-size:11px;font-weight:700;padding:4px 8px;border-radius:3px;text-transform:uppercase}
 .modal-box h2{font-size:26px}
 .modal-box table{width:100%;border-collapse:collapse;margin:16px 0;font-size:14px}
@@ -748,6 +754,7 @@ function carCard(c){
     <div class="body">
       <h3>${title(c)}</h3><div class="trim">${c.trim}</div>
       <div class="price">${c.price?money(c.price)+" *":"Call for Price"}</div><div class="fee">${c.price?"*Includes Dealer Fees":"&nbsp;"}</div>
+      ${badges(c)}
       <div class="specs">
         <span><b>Year</b>${c.year}</span><span><b>Mileage</b>${c.miles?c.miles.toLocaleString()+" mi":"—"}</span>
         <span><b>Stock #</b>${c.stock}</span><span><b>Body</b>${c.body}</span>
@@ -768,13 +775,23 @@ function openCar(stock,fromNav){
   $("#mDet").innerHTML=`<div><h2>${title(c)}</h2><div class="trim" style="color:var(--muted)">${c.trim}</div>${c.status==="pending"?'<div class="pill-pend">Sale Pending</div>':""}
    <div class="price" style="font-family:Oswald;font-size:32px;color:var(--blue);margin-top:10px">${c.price?money(c.price)+" *":"Call for Price"}</div>
    ${c.price?'<div style="font-size:12px;color:var(--muted)">*Includes Dealer Fees</div>':''}
+   ${badges(c,true)}
    <div class="acts" style="margin-top:16px"><a class="btn" href="tel:+16783836024">Call Now</a><a class="btn" style="background:#222" href="/contact-us/" onclick="pick('${c.id}')">Test Drive</a><a class="btn" style="background:#222" href="/apply-online/" onclick="pick('${c.id}')">Get Approved</a></div></div>
    <table><tr><td>Year</td><td>${c.year}</td></tr><tr><td>Make</td><td>${c.make}</td></tr><tr><td>Model</td><td>${c.model}</td></tr>
    <tr><td>Trim</td><td>${c.trim}</td></tr><tr><td>Body</td><td>${c.body}</td></tr><tr><td>Mileage</td><td>${c.miles?c.miles.toLocaleString()+" mi":"—"}</td></tr><tr><td>Stock #</td><td>${c.stock||"—"}</td></tr>${[["Engine",c.engine],["Drivetrain",c.drivetrain],["Transmission",c.transmission],["Fuel",c.fuel],["Exterior",c.extColor],["Interior",c.intColor],["VIN",c.vin]].filter(r=>r[1]).map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table>
    ${c.description?`<p style="grid-column:1/-1;color:#3a3d42;white-space:pre-line">${c.description}</p>`:""}`;
   $("#modal").classList.add("show");
+  if(c.vin&&c.price)cgRefresh();
   const v=$("#mVid");if(v){v.play&&v.play().catch(()=>{});}
 }
+/* CarGurus deal rating + Carfax report */
+const CFX={great:"Great Value",good:"Good Value",fair:"Fair Value","1own_great":"1-Owner Great Value","1own_good":"1-Owner Good Value","1own_fair":"1-Owner Fair Value"};
+function badges(c,big){
+  const cg=c.vin&&c.price?`<span class="cg-badge" data-cg-vin="${c.vin}" data-cg-price="${c.price}" data-cg-height="${big?60:44}"></span>`:"";
+  const cf=c.carfaxUrl?`<a class="cfx" href="${c.carfaxUrl}" target="_blank" rel="noopener" onclick="event.stopPropagation()">${CFX[c.carfaxValue]?`<img src="https://partnerstatic.carfax.com/img/valuebadge/${c.carfaxValue}.svg" alt="CARFAX ${CFX[c.carfaxValue]}" height="${big?40:30}">`:'<b>CARFAX</b>'}<span>View Carfax Report</span></a>`:"";
+  return cg||cf?`<div class="badges${big?" big":""}">${cg}${cf}</div>`:"";
+}
+function cgRefresh(){const s=document.createElement("script");s.src="https://static.cargurus.com/js/api/en_US/1.0/dealratingbadge.js";s.async=true;document.body.appendChild(s);}
 function setPhoto(btn,i){const c=CARS.find(x=>x.id===$("#mThumbs").dataset.stock);$("#mMain").style.backgroundImage=`url('${(c.photos.length?c.photos:[c.img])[i]}')`;document.querySelectorAll(".m-th").forEach(b=>b.classList.toggle("on",b===btn))}
 document.addEventListener("change",e=>{if(e.target.id!=="applyVeh")return;const c=CARS.find(x=>title(x)===e.target.value);if(!c)return;const F=e.target.form.elements;F["Stock Number"].value=c.stock;F["Vehicle Year"].value=c.year;F["Vehicle Make"].value=c.make;F["Vehicle Model"].value=c.model;F["Vehicle Price"].value=money(c.price);});
 function closeModal(silent){const open=$("#modal").classList.contains("show");$("#modal").classList.remove("show");const v=$("#mVid");if(v)v.pause();if(!silent&&open&&VEH_RE.test(location.pathname)){history.pushState({},"",modalBase);document.title=(PAGES[pageFromPath(modalBase.split("?")[0])]||PAGES.inventory||{}).title||document.title;}}
@@ -796,6 +813,7 @@ function renderInv(){
   if(s=="yd")list.sort((a,b)=>b.year-a.year);if(s=="ma")list.sort((a,b)=>a.miles-b.miles);
   $("#count").textContent=`${list.length} Available Vehicle${list.length==1?"":"s"}`;
   $("#invList").innerHTML=list.length?list.map(carCard).join(""):`<p>No vehicles match those filters. <a href="/car-finder/" style="color:var(--blue);font-weight:700">Let our Car Finder search for you →</a></p>`;
+  if(document.querySelector('span[data-cg-vin]'))cgRefresh();
 }
 function resetFilters(){["#fYear","#fMake","#fModel","#fBody","#fPrice","#fMiles","#sort"].forEach(s=>$(s).value="");renderInv()}
 
@@ -831,7 +849,7 @@ document.querySelectorAll("form button:not([type=button])").forEach(b=>b.dataset
 const PAGES=window.PAGES||{};
 const PATH2PAGE={"/":"home","/inventory/":"inventory","/vehicle-specials/":"specials","/apply-online/":"apply","/car-rental/":"rental","/car-finder/":"finder","/warranty/":"warranty","/about-us/":"about","/testimonials/":"testimonials","/contact-us/":"contact"};
 const slugify=s=>String(s).toLowerCase().replace(/&amp;/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
-const carPath=c=>`/inventory/${slugify(c.make)}/${slugify(c.model)}/${encodeURIComponent(c.stock||c.id)}/`;
+const carPath=c=>`/inventory/${slugify(c.make)}/${slugify(c.model)}/${encodeURIComponent(String(c.stock||c.id).toLowerCase())}/`;
 function pageFromPath(p){if(!p.endsWith("/"))p+="/";if(PATH2PAGE[p])return PATH2PAGE[p];if(/^\/inventory\//.test(p))return "inventory";return "home"}
 const VEH_RE=/^\/inventory\/[^/]+\/[^/]+\/([^/]+)\/$/;
 let modalBase=VEH_RE.test(location.pathname)?"/inventory/":location.pathname;
@@ -841,7 +859,7 @@ function route(){
   document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("active",PATH2PAGE[a.getAttribute("href")]===page));
 }
 function go(path){location.href=path;}
-window.addEventListener("popstate",()=>{const m=location.pathname.match(VEH_RE);if(m){const c=CARS.find(x=>(x.stock||x.id)===decodeURIComponent(m[1]));if(c)openCar(c.id,true)}else closeModal(true)});
+window.addEventListener("popstate",()=>{const m=location.pathname.match(VEH_RE);if(m){const c=CARS.find(x=>String(x.stock||x.id).toLowerCase()===decodeURIComponent(m[1]).toLowerCase());if(c)openCar(c.id,true)}else closeModal(true)});
 
 // init
 $("#homeReviews").innerHTML=REVIEWS.slice(0,3).map(revHTML).join("");
@@ -878,7 +896,7 @@ $("#featured").innerHTML=CARS.filter(c=>c.featured).map(carCard).join("");
   {const sp=new URLSearchParams(location.search);[["year","#fYear"],["make","#fMake"],["model","#fModel"],["body","#fBody"]].forEach(([k,s])=>{if(sp.get(k))$(s).value=sp.get(k)});}
   renderInv();
   const vm=location.pathname.match(/^\/inventory\/[^/]+\/[^/]+\/([^/]+)\/$/);
-  if(vm){const c=CARS.find(x=>(x.stock||x.id)===decodeURIComponent(vm[1]));if(c)openCar(c.id,true);}
+  if(vm){const c=CARS.find(x=>String(x.stock||x.id).toLowerCase()===decodeURIComponent(vm[1]).toLowerCase());if(c)openCar(c.id,true);}
 }
 fetch("/api/inventory").then(r=>{if(!r.ok)throw 0;return r.json()}).then(list=>{
   CARS=list.map(c=>{const o={};for(const k in c)o[k]=typeof c[k]==="string"?escH(c[k]):c[k];
