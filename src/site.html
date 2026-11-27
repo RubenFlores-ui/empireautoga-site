@@ -338,8 +338,9 @@ input::placeholder,textarea::placeholder{color:#7c8087}
 
 <!-- ============ HOME ============ -->
 <main id="page-home" class="page">
-  <div class="hero" role="img" aria-label="Empire Auto Group used car dealership in Cartersville, GA" style="background-image:url('/media/hero-mountain-drive.jpg')">
-    <video class="hero-video" autoplay muted loop playsinline preload="auto" poster="/media/hero-mountain-drive.jpg" aria-hidden="true"><source src="/media/hero-mountain-drive.mp4" type="video/mp4"></video><div class="wrap"><div class="hero-box">
+  <div class="hero" role="img" aria-label="Empire Auto Group used car dealership in Cartersville, GA">
+    <video class="hero-video" id="heroVid" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+    <script>{const tall=matchMedia("(max-aspect-ratio: 4/5)").matches,v=document.getElementById("heroVid"),n=tall?"hero-tall":"hero-wide";v.poster="/media/"+n+".jpg";v.parentNode.style.backgroundImage="url(/media/"+n+".jpg)";if(!matchMedia("(prefers-reduced-motion: reduce)").matches){v.src="/media/"+n+".mp4";}}</script><div class="wrap"><div class="hero-box">
     <h1>Used Cars, Trucks &amp; SUVs in Cartersville, GA</h1>
     <p class="hero-sub">Making Your Buying Experience an Easy One</p>
     <div class="ratings">
