@@ -843,6 +843,27 @@ function route(){
 function go(path){location.href=path;}
 window.addEventListener("popstate",()=>{const m=location.pathname.match(VEH_RE);if(m){const c=CARS.find(x=>(x.stock||x.id)===decodeURIComponent(m[1]));if(c)openCar(c.id,true)}else closeModal(true)});
 
+// init
+$("#homeReviews").innerHTML=REVIEWS.slice(0,3).map(revHTML).join("");
+$("#allReviews").innerHTML=REVIEWS.map(revHTML).join("");
+(function(){
+  const short=t=>t.length>140?t.slice(0,t.lastIndexOf(" ",137))+"…":t;
+  const items=REVIEWS.map(r=>`<a class="ticker-item" href="/testimonials/">${r.source?`<span class="src">${r.source}</span>`:""}<span class="stars">★★★★★</span><i>“${short(r.text)}”</i><b>— ${r.who}</b></a>`).join("");
+  const t=$("#tickerTrack");t.innerHTML=items+items; // doubled for a seamless loop
+  requestAnimationFrame(()=>t.style.setProperty("--dur",Math.max(30,t.scrollWidth/2/60)+"s")); // ~60px per second
+})();
+(function(){
+  const icon=BODY_ICONS.SUV;
+  const cards=RENTALS.map(c=>`<a class="rent-card" href="${c.url}" target="_blank" rel="noopener">
+    <div class="ph"><img src="${c.img}" alt="${c.name}" style="width:100%;height:100%;object-fit:cover" onerror="this.replaceWith(document.createRange().createContextualFragment('${icon.replace(/'/g,"\\'")}'))"></div>
+    <div class="in"><b>${c.name}</b><small>${c.type} · ${c.seats} seats · 📍 ${c.loc}</small>
+    <span class="rt">★ ${c.rating} <small>(${c.trips} trip${c.trips==1?"":"s"})</small></span><span class="go">Book on Turo →</span></div></a>`).join("");
+  const t=$("#fleetTrack");t.innerHTML=cards+cards;
+  requestAnimationFrame(()=>t.style.setProperty("--dur",Math.max(25,t.scrollWidth/2/45)+"s"));
+})();
+document.querySelectorAll("[data-info]").forEach(el=>el.innerHTML=INFO);
+["#fYear","#fMake","#fModel","#fBody","#fPrice","#fMiles","#sort"].forEach(s=>$(s).addEventListener("change",renderInv));
+$("#yr").textContent=new Date().getFullYear();
 // old #page links (from bookmarks) -> real URLs
 {const OLD={home:"/",inventory:"/inventory/",apply:"/apply-online/",rental:"/car-rental/",finder:"/car-finder/",warranty:"/warranty/",about:"/about-us/",testimonials:"/testimonials/",contact:"/contact-us/"};const k=location.hash.slice(1);if(OLD[k])history.replaceState({},"",OLD[k]);}
 route();
