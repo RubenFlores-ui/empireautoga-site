@@ -114,3 +114,9 @@ export function carJsonLd(c, url) {
 export const slugify = (s) => String(s).toLowerCase().replace(/&/g, "and").replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "");
 export const carPath = (c) => `/inventory/${slugify(c.make)}/${slugify(c.model)}/${encodeURIComponent(c.stock || c.id)}/`;
 export { titleCase, escAttr };
+
+// Keep only one page's <main> section, so each URL has one H1 and only its own content.
+export function pageHtml(tpl, key, head) {
+  let out = tpl.replace(/<main id="page-([a-z]+)" class="page">[\s\S]*?<\/main>\n?/g, (m, k) => (k === key ? m.replace('class="page"', 'class="page active"') : ""));
+  return out.replace("<!--SEO-->", head).replace("<body>", `<body data-page="${key}">`);
+}

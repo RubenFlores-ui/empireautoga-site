@@ -729,7 +729,7 @@ const REVIEWS = [
 ];
 
 /* ================= site code below ================= */
-const $=s=>document.querySelector(s);
+const $=s=>document.querySelector(s)||document.createElement(s.startsWith("#f")||s.startsWith("#q")||/Veh$/.test(s)?"select":"div");
 const money=n=>"$"+n.toLocaleString();
 const title=c=>`${c.year} ${c.make} ${c.model}`;
 const uniq=(arr)=>[...new Set(arr)].sort();
@@ -758,7 +758,7 @@ function carCard(c){
 
 function openCar(stock,fromNav){
   const c=CARS.find(x=>x.id===stock);if(!c)return;
-  if(!fromNav&&location.pathname!==carPath(c)){history.pushState({car:c.id},"",carPath(c));}
+  if(!fromNav&&location.pathname!==carPath(c)){if(!VEH_RE.test(location.pathname))modalBase=location.pathname+location.search;history.pushState({car:c.id},"",carPath(c));}
   document.title=`${c.year} ${c.make} ${c.model} for Sale in Cartersville, GA | Empire Auto Group`;const photos=c.photos&&c.photos.length?c.photos:[c.img];
   $("#mMedia").className="m-media"+(c.video?" has-video":"");
   $("#mMedia").innerHTML=`<div class="m-photo" id="mMain" role="img" aria-label="${title(c)}" style="background-image:url('${photos[0]}')"></div>`+
@@ -777,8 +777,8 @@ function openCar(stock,fromNav){
 }
 function setPhoto(btn,i){const c=CARS.find(x=>x.id===$("#mThumbs").dataset.stock);$("#mMain").style.backgroundImage=`url('${(c.photos.length?c.photos:[c.img])[i]}')`;document.querySelectorAll(".m-th").forEach(b=>b.classList.toggle("on",b===btn))}
 document.addEventListener("change",e=>{if(e.target.id!=="applyVeh")return;const c=CARS.find(x=>title(x)===e.target.value);if(!c)return;const F=e.target.form.elements;F["Stock Number"].value=c.stock;F["Vehicle Year"].value=c.year;F["Vehicle Make"].value=c.make;F["Vehicle Model"].value=c.model;F["Vehicle Price"].value=money(c.price);});
-function closeModal(silent){const open=$("#modal").classList.contains("show");$("#modal").classList.remove("show");const v=$("#mVid");if(v)v.pause();if(!silent&&open&&/^\/inventory\/.+\/.+\/.+/.test(location.pathname)){history.pushState({},"","/inventory/");route(false);}}
-function pick(id){closeModal(true);const t=title(CARS.find(c=>c.id===id));["#applyVeh","#contactVeh"].forEach(s=>{$(s).value=t;$(s).dispatchEvent(new Event("change",{bubbles:true}))})}
+function closeModal(silent){const open=$("#modal").classList.contains("show");$("#modal").classList.remove("show");const v=$("#mVid");if(v)v.pause();if(!silent&&open&&VEH_RE.test(location.pathname)){history.pushState({},"",modalBase);document.title=(PAGES[pageFromPath(modalBase.split("?")[0])]||PAGES.inventory||{}).title||document.title;}}
+function pick(id){closeModal(true);const t=title(CARS.find(c=>c.id===id));try{sessionStorage.setItem("eag_pick",t)}catch{}["#applyVeh","#contactVeh"].forEach(s=>{$(s).value=t;$(s).dispatchEvent(new Event("change",{bubbles:true}))})}
 
 function fill(sel,label,vals){$(sel).innerHTML=`<option value="">${label}</option>`+vals.map(v=>`<option>${v}</option>`).join("")}
 
@@ -799,8 +799,8 @@ function renderInv(){
 }
 function resetFilters(){["#fYear","#fMake","#fModel","#fBody","#fPrice","#fMiles","#sort"].forEach(s=>$(s).value="");renderInv()}
 
-function quickSearch(e){e.preventDefault();resetFilters();$("#fYear").value=$("#qYear").value;$("#fMake").value=$("#qMake").value;$("#fModel").value=$("#qModel").value;go("/inventory/");renderInv();return false}
-function bodySearch(b){resetFilters();$("#fBody").value=b;go("/inventory/");renderInv()}
+function quickSearch(e){e.preventDefault();const q=new URLSearchParams();if($("#qYear").value)q.set("year",$("#qYear").value);if($("#qMake").value)q.set("make",$("#qMake").value);if($("#qModel").value)q.set("model",$("#qModel").value);go("/inventory/"+(q.toString()?"?"+q:""));return false}
+function bodySearch(b){go("/inventory/?body="+encodeURIComponent(b))}
 
 function sendForm(e,subject){
   e.preventDefault();const form=e.target;
@@ -824,7 +824,7 @@ function sendForm(e,subject){
 function showTab(t){document.querySelectorAll(".buyer-tabs button").forEach(b=>b.classList.toggle("on",b.dataset.tab===t));document.querySelectorAll(".tabpane").forEach(p=>p.hidden=p.id!=="tab-"+t)}
 document.querySelectorAll(".buyer-tabs button").forEach(b=>b.onclick=()=>showTab(b.dataset.tab));
 document.querySelectorAll("[data-show]").forEach(c=>c.addEventListener("change",()=>document.getElementById(c.dataset.show).classList.toggle("open",c.checked)));
-document.getElementById("hasCo").addEventListener("change",e=>document.getElementById("coFields").classList.toggle("open",e.target.checked));
+$("#hasCo").addEventListener("change",e=>document.getElementById("coFields").classList.toggle("open",e.target.checked));
 document.querySelectorAll("form button:not([type=button])").forEach(b=>b.dataset.label=b.textContent);
 
 /* ---------- page routing (real URLs) ---------- */
@@ -832,56 +832,29 @@ const PAGES=window.PAGES||{};
 const PATH2PAGE={"/":"home","/inventory/":"inventory","/vehicle-specials/":"specials","/apply-online/":"apply","/car-rental/":"rental","/car-finder/":"finder","/warranty/":"warranty","/about-us/":"about","/testimonials/":"testimonials","/contact-us/":"contact"};
 const slugify=s=>String(s).toLowerCase().replace(/&amp;/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
 const carPath=c=>`/inventory/${slugify(c.make)}/${slugify(c.model)}/${encodeURIComponent(c.stock||c.id)}/`;
-function pageFromPath(p){if(!p.endsWith("/"))p+="/";if(PATH2PAGE[p])return PATH2PAGE[p];if(/^\/inventory\/[^/]+\/[^/]+\/[^/]+\/$/.test(p))return "inventory";return "home"}
-function setMeta(page){const m=PAGES[page];if(!m)return;document.title=m.title;const d=document.querySelector('meta[name="description"]');if(d)d.content=m.desc;const c=document.querySelector('link[rel="canonical"]');if(c)c.href=SITE+m.path;}
-function route(scroll=true){
-  const page=pageFromPath(location.pathname);
-  document.querySelectorAll(".page").forEach(el=>el.classList.toggle("active",el.id==="page-"+page));
+function pageFromPath(p){if(!p.endsWith("/"))p+="/";if(PATH2PAGE[p])return PATH2PAGE[p];if(/^\/inventory\//.test(p))return "inventory";return "home"}
+const VEH_RE=/^\/inventory\/[^/]+\/[^/]+\/([^/]+)\/$/;
+let modalBase=VEH_RE.test(location.pathname)?"/inventory/":location.pathname;
+function route(){
+  const page=document.body.dataset.page||pageFromPath(location.pathname);
+  document.querySelectorAll(".page").forEach(el=>el.classList.add("active"));
   document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("active",PATH2PAGE[a.getAttribute("href")]===page));
-  document.querySelector("nav").classList.remove("open");
-  if(!/^\/inventory\/.+\/.+\/.+/.test(location.pathname))setMeta(page);
-  if(scroll)window.scrollTo(0,0);
 }
-function go(path){if(location.pathname!==path)history.pushState({},"",path);closeModal(true);route();}
-document.addEventListener("click",e=>{
-  const a=e.target.closest("a[href]");if(!a||e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||a.target)return;
-  const href=a.getAttribute("href");if(!href.startsWith("/")||href.startsWith("/admin")||href.startsWith("//"))return;
-  if(PATH2PAGE[href]===undefined)return;
-  e.preventDefault();go(href);
-});
-window.addEventListener("popstate",()=>{route(false);const m=location.pathname.match(/^\/inventory\/[^/]+\/[^/]+\/([^/]+)\/$/);if(m){const c=CARS.find(x=>(x.stock||x.id)===decodeURIComponent(m[1]));if(c)openCar(c.id,true)}else closeModal(true)});
+function go(path){location.href=path;}
+window.addEventListener("popstate",()=>{const m=location.pathname.match(VEH_RE);if(m){const c=CARS.find(x=>(x.stock||x.id)===decodeURIComponent(m[1]));if(c)openCar(c.id,true)}else closeModal(true)});
 
-// init
-$("#homeReviews").innerHTML=REVIEWS.slice(0,3).map(revHTML).join("");
-$("#allReviews").innerHTML=REVIEWS.map(revHTML).join("");
-(function(){
-  const short=t=>t.length>140?t.slice(0,t.lastIndexOf(" ",137))+"…":t;
-  const items=REVIEWS.map(r=>`<a class="ticker-item" href="/testimonials/">${r.source?`<span class="src">${r.source}</span>`:""}<span class="stars">★★★★★</span><i>“${short(r.text)}”</i><b>— ${r.who}</b></a>`).join("");
-  const t=$("#tickerTrack");t.innerHTML=items+items; // doubled for a seamless loop
-  requestAnimationFrame(()=>t.style.setProperty("--dur",Math.max(30,t.scrollWidth/2/60)+"s")); // ~60px per second
-})();
-(function(){
-  const icon=BODY_ICONS.SUV;
-  const cards=RENTALS.map(c=>`<a class="rent-card" href="${c.url}" target="_blank" rel="noopener">
-    <div class="ph"><img src="${c.img}" alt="${c.name}" style="width:100%;height:100%;object-fit:cover" onerror="this.replaceWith(document.createRange().createContextualFragment('${icon.replace(/'/g,"\\'")}'))"></div>
-    <div class="in"><b>${c.name}</b><small>${c.type} · ${c.seats} seats · 📍 ${c.loc}</small>
-    <span class="rt">★ ${c.rating} <small>(${c.trips} trip${c.trips==1?"":"s"})</small></span><span class="go">Book on Turo →</span></div></a>`).join("");
-  const t=$("#fleetTrack");t.innerHTML=cards+cards;
-  requestAnimationFrame(()=>t.style.setProperty("--dur",Math.max(25,t.scrollWidth/2/45)+"s"));
-})();
-document.querySelectorAll("[data-info]").forEach(el=>el.innerHTML=INFO);
-["#fYear","#fMake","#fModel","#fBody","#fPrice","#fMiles","#sort"].forEach(s=>$(s).addEventListener("change",renderInv));
-$("#yr").textContent=new Date().getFullYear();
 // old #page links (from bookmarks) -> real URLs
 {const OLD={home:"/",inventory:"/inventory/",apply:"/apply-online/",rental:"/car-rental/",finder:"/car-finder/",warranty:"/warranty/",about:"/about-us/",testimonials:"/testimonials/",contact:"/contact-us/"};const k=location.hash.slice(1);if(OLD[k])history.replaceState({},"",OLD[k]);}
-route(false);
+route();
 function initInventory(){
 fill("#qYear","Any Year",uniq(CARS.map(c=>c.year)));fill("#qMake","Any Make",uniq(CARS.map(c=>c.make)));fill("#qModel","Any Model",uniq(CARS.map(c=>c.model)));
 fill("#fYear","Any Year",uniq(CARS.map(c=>c.year)));fill("#fMake","Any Make",uniq(CARS.map(c=>c.make)));fill("#fModel","Any Model",uniq(CARS.map(c=>c.model)));fill("#fBody","Any Body Type",uniq(CARS.map(c=>c.body)));
 ["#applyVeh","#contactVeh"].forEach(s=>fill(s,"— Select a vehicle (optional) —",CARS.map(title)));
+  try{const t=sessionStorage.getItem("eag_pick");if(t){sessionStorage.removeItem("eag_pick");["#applyVeh","#contactVeh"].forEach(s=>{$(s).value=t;$(s).dispatchEvent(new Event("change",{bubbles:true}))})}}catch{}
 $("#bodies").innerHTML=["SUV","Coupe","Pickup","Sedan"].map(b=>`<div class="body-card" onclick="bodySearch('${b}')">${BODY_ICONS[b]}<b>${b}</b></div>`).join("");
 $("#featured").innerHTML=CARS.filter(c=>c.featured).map(carCard).join("");
   $("#specialsList").innerHTML=(CARS.filter(c=>c.featured).length?CARS.filter(c=>c.featured):CARS).map(carCard).join("")||"<p>Check back soon for this week's specials.</p>";
+  {const sp=new URLSearchParams(location.search);[["year","#fYear"],["make","#fMake"],["model","#fModel"],["body","#fBody"]].forEach(([k,s])=>{if(sp.get(k))$(s).value=sp.get(k)});}
   renderInv();
   const vm=location.pathname.match(/^\/inventory\/[^/]+\/[^/]+\/([^/]+)\/$/);
   if(vm){const c=CARS.find(x=>(x.stock||x.id)===decodeURIComponent(vm[1]));if(c)openCar(c.id,true);}

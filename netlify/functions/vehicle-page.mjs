@@ -3,7 +3,7 @@
 import { getStore } from "@netlify/blobs";
 import TEMPLATE from "../lib/site-template.mjs";
 import { SEED } from "../lib/seed.mjs";
-import { SITE, PAGES, headTags, dealerJsonLd, carJsonLd, carPath, titleCase } from "../lib/seo.mjs";
+import { SITE, PAGES, headTags, dealerJsonLd, carJsonLd, carPath, titleCase, pageHtml } from "../lib/seo.mjs";
 
 export default async (req, context) => {
   const { stock } = context.params;
@@ -13,7 +13,7 @@ export default async (req, context) => {
 
   if (!car) {
     const head = headTags({ title: "Vehicle No Longer Available | Empire Auto Group", desc: PAGES.inventory.desc, url: SITE + "/inventory/", noindex: true, jsonld: [dealerJsonLd()] });
-    return new Response(TEMPLATE.replace("<!--SEO-->", head).replace("<body>", '<body data-page="inventory">'), {
+    return new Response(pageHtml(TEMPLATE, "inventory", head), {
       status: 404, headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "no-store" },
     });
   }
@@ -29,7 +29,7 @@ export default async (req, context) => {
   const img = car.photos?.[0] ? (car.photos[0].startsWith("http") ? car.photos[0] : SITE + car.photos[0]) : undefined;
 
   const head = headTags({ title: `${name} for Sale in Cartersville, GA | Empire Auto Group`, desc, url, image: img, jsonld: [dealerJsonLd(), carJsonLd(car, url)] });
-  return new Response(TEMPLATE.replace("<!--SEO-->", head).replace("<body>", '<body data-page="inventory">'), {
+  return new Response(pageHtml(TEMPLATE, "inventory", head), {
     headers: { "Content-Type": "text/html; charset=utf-8", "Cache-Control": "public, max-age=0, must-revalidate" },
   });
 };
