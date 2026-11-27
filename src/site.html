@@ -3,8 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Empire Auto Group LLC | Quality Used Cars in Cartersville, GA</title>
-<meta name="description" content="Empire Auto Group in Cartersville, GA. Hand-picked quality used cars, trucks and SUVs, easy auto financing, car rentals and no hidden dealer fees.">
+<!--SEO-->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -44,7 +43,9 @@ nav a:hover,nav a.active{color:var(--blue)}
 .hero-box{text-align:right;color:#fff;max-width:560px}
 .hero-box h1{font-size:46px;text-shadow:0 2px 12px rgba(0,0,0,.5)}
 .ratings{display:flex;gap:26px;justify-content:flex-end;align-items:center;margin-top:18px;flex-wrap:wrap}
-.ratings div{font-size:14px;text-align:left;line-height:1.35}
+.ratings>a:not(.btn){font-size:14px;text-align:left;line-height:1.35;color:#fff}
+.ratings>a:not(.btn):hover{text-decoration:underline}
+.hero-sub{font-family:Oswald;text-transform:uppercase;font-size:26px;margin-top:10px;text-shadow:0 2px 10px rgba(0,0,0,.5)}
 .stars{color:#ffc400;letter-spacing:2px}
 .hero{padding:40px 0 150px}
 /* review ticker */
@@ -271,36 +272,37 @@ footer .bottom{border-top:1px solid var(--line);margin-top:40px;padding:18px 0;f
 
 <div class="topbar"><div class="wrap">
   <span>📍 305 S Tennessee St, Cartersville, GA 30120</span>
-  <a href="tel:7705274067">📞 (770) 527-4067</a>
+  <a href="tel:+16783836024">📞 (678) 383-6024</a>
   <b>¡Hablamos Español!</b>
 </div></div>
 
 <header><div class="wrap">
-  <a href="#home" class="logo">
+  <a href="/" class="logo">
     <img src="https://dcdws.blob.core.windows.net/dws-9988903-83873-media/sites/83873/2026/10/Empire-Auto-Group-Automotive-Logo-w300.png" alt="Empire Auto Group — Quality, Integrity, Fair Pricing">
   </a>
   <button class="burger" aria-label="Menu" onclick="document.querySelector('nav').classList.toggle('open')">☰</button>
   <nav><ul>
-    <li><a href="#home">Home</a></li>
-    <li><a href="#inventory">Inventory</a></li>
-    <li><a href="#apply">Apply Online</a></li>
-    <li><a href="#rental">Car Rental</a></li>
-    <li><a href="#finder">Car Finder</a></li>
-    <li><a href="#warranty">Warranty</a></li>
-    <li><a href="#about">About Us</a></li>
-    <li><a href="#testimonials">Testimonials</a></li>
-    <li><a href="#contact">Contact Us</a></li>
+    <li><a href="/">Home</a></li>
+    <li><a href="/inventory/">Inventory</a></li>
+    <li><a href="/apply-online/">Apply Online</a></li>
+    <li><a href="/car-rental/">Car Rental</a></li>
+    <li><a href="/car-finder/">Car Finder</a></li>
+    <li><a href="/warranty/">Warranty</a></li>
+    <li><a href="/about-us/">About Us</a></li>
+    <li><a href="/testimonials/">Testimonials</a></li>
+    <li><a href="/contact-us/">Contact Us</a></li>
   </ul></nav>
 </div></header>
 
 <!-- ============ HOME ============ -->
 <main id="page-home" class="page">
-  <div class="hero"><div class="wrap"><div class="hero-box">
-    <h1>Making Your Buying<br>Experience an Easy One</h1>
+  <div class="hero" role="img" aria-label="Empire Auto Group used car dealership in Cartersville, GA"><div class="wrap"><div class="hero-box">
+    <h1>Used Cars, Trucks &amp; SUVs in Cartersville, GA</h1>
+    <p class="hero-sub">Making Your Buying Experience an Easy One</p>
     <div class="ratings">
-      <div>5.0 <span class="stars">★★★★★</span><br>Facebook Reviews</div>
-      <div>4.8 <span class="stars">★★★★★</span><br>Google Reviews</div>
-      <a class="btn" href="#inventory">View Inventory</a>
+      <a href="https://www.facebook.com/Empireautogrp" target="_blank" rel="noopener" aria-label="Empire Auto Group on Facebook">5.0 <span class="stars" aria-hidden="true">★★★★★</span><br>Facebook Reviews</a>
+      <a href="https://maps.google.com/?cid=11119747200892116993" target="_blank" rel="noopener" aria-label="Read Empire Auto Group reviews on Google">4.8 <span class="stars" aria-hidden="true">★★★★★</span><br>Google Reviews</a>
+      <a class="btn" href="/inventory/">View Inventory</a>
     </div>
   </div></div>
     <div class="ticker" aria-label="Customer reviews">
@@ -324,7 +326,7 @@ footer .bottom{border-top:1px solid var(--line);margin-top:40px;padding:18px 0;f
       <h2>Welcome to <span>Empire Auto Group</span>, located in Cartersville, GA</h2>
       <p>Where quality service and customer satisfaction come first. We are here to help you find a vehicle that fits your lifestyle from our wide selection of used cars, trucks, and SUVs.</p>
       <p>We pride ourselves on a hassle-free car buying experience where your needs come first. Swing by to let us exceed your expectations while finding the perfect vehicle!</p>
-      <a class="btn" href="#about" style="margin-top:8px">More About Us</a>
+      <a class="btn" href="/about-us/" style="margin-top:8px">More About Us</a>
     </div>
     <div class="mission">
       <h3>Our Mission Statement</h3>
@@ -342,7 +344,7 @@ footer .bottom{border-top:1px solid var(--line);margin-top:40px;padding:18px 0;f
   <section style="background:var(--bg)"><div class="wrap">
     <div class="sec-title"><h2>Featured Vehicles</h2><p>Hand-picked, quality pre-owned — prices include dealer fees.</p><div class="bar"></div></div>
     <div class="cars" id="featured"></div>
-    <div style="text-align:center;margin-top:34px"><a class="btn" href="#inventory">See All Inventory</a></div>
+    <div style="text-align:center;margin-top:34px"><a class="btn" href="/inventory/">See All Inventory</a></div>
   </div></section>
 
   <section class="reviews"><div class="wrap">
@@ -353,15 +355,15 @@ footer .bottom{border-top:1px solid var(--line);margin-top:40px;padding:18px 0;f
   <section class="easy"><div class="wrap">
     <div class="sec-title"><h2>How Easy Is Buying a Car From Us?</h2><p>We are dedicated to providing you with the ultimate automobile buying experience. We're your #1 source for a quality pre-owned vehicle.</p><div class="bar"></div></div>
     <div class="grid">
-      <div class="easy-card"><h3>Get Approved Now</h3><p>Easy auto financing with inventory to match your budget. Apply online in minutes and we'll get back to you fast.</p><a class="btn" href="#apply">Apply Online</a></div>
-      <div class="easy-card"><h3>Schedule a Test Drive</h3><p>The best way to make your final decision is to test drive your dream car. Our friendly, experienced staff are here to help!</p><a class="btn" href="#contact">Make an Appointment</a></div>
+      <div class="easy-card"><h3>Get Approved Now</h3><p>Easy auto financing with inventory to match your budget. Apply online in minutes and we'll get back to you fast.</p><a class="btn" href="/apply-online/">Apply Online</a></div>
+      <div class="easy-card"><h3>Schedule a Test Drive</h3><p>The best way to make your final decision is to test drive your dream car. Our friendly, experienced staff are here to help!</p><a class="btn" href="/contact-us/">Make an Appointment</a></div>
     </div>
   </div></section>
 </main>
 
 <!-- ============ INVENTORY ============ -->
 <main id="page-inventory" class="page">
-  <div class="page-head"><h1>High Quality Car Inventory in Cartersville, GA</h1><div class="crumbs"><a href="#home">Home</a> / Inventory</div></div>
+  <div class="page-head"><h1>High Quality Car Inventory in Cartersville, GA</h1><div class="crumbs"><a href="/">Home</a> / Inventory · <a href="/vehicle-specials/">Vehicle Specials</a></div></div>
   <section><div class="wrap inv">
     <aside class="filters">
       <h3>Filters</h3>
@@ -382,9 +384,19 @@ footer .bottom{border-top:1px solid var(--line);margin-top:40px;padding:18px 0;f
   </div></section>
 </main>
 
+<!-- ============ SPECIALS ============ -->
+<main id="page-specials" class="page">
+  <div class="page-head"><h1>Used Car Specials in Cartersville, GA</h1><div class="crumbs"><a href="/">Home</a> / Vehicle Specials</div></div>
+  <section><div class="wrap">
+    <div class="sec-title"><h2>This Week's Best Deals</h2><p>Hand-picked used cars, trucks and SUVs — all prices include dealer fees.</p><div class="bar"></div></div>
+    <div class="cars" id="specialsList"></div>
+    <div style="text-align:center;margin-top:34px"><a class="btn" href="/inventory/">See All Inventory</a></div>
+  </div></section>
+</main>
+
 <!-- ============ APPLY ============ -->
 <main id="page-apply" class="page">
-  <div class="page-head"><h1>Apply Online</h1><div class="crumbs"><a href="#home">Home</a> / Apply Online</div></div>
+  <div class="page-head"><h1>Apply for Car Financing Online</h1><div class="crumbs"><a href="/">Home</a> / Apply Online</div></div>
   <section><div class="wrap">
     <form class="form-card app-form" novalidate name="credit-application" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return sendForm(event,'Credit Application')">
       <input type="hidden" name="form-name" value="credit-application"><p hidden><input name="bot-field"></p>
@@ -480,21 +492,21 @@ footer .bottom{border-top:1px solid var(--line);margin-top:40px;padding:18px 0;f
       </div>
       <button class="btn" style="margin-top:20px">Submit</button>
       <div class="ok">Thank you! Your application has been received. We'll contact you shortly.</div>
-      <div class="err">Sorry — your application couldn't be sent. Please call us at <a href="tel:7705274067">(770) 527-4067</a>.</div>
+      <div class="err">Sorry — your application couldn't be sent. Please call us at <a href="tel:+16783836024">(678) 383-6024</a>.</div>
     </form>
   </div></section>
 </main>
 
 <!-- ============ RENTAL ============ -->
 <main id="page-rental" class="page">
-  <div class="page-head"><h1>Car Rental</h1><div class="crumbs"><a href="#home">Home</a> / Car Rental</div></div>
+  <div class="page-head"><h1>High Quality Car Rentals in Cartersville, GA</h1><div class="crumbs"><a href="/">Home</a> / Car Rental</div></div>
   <div class="fleet" aria-label="Cars available to rent">
     <div class="fleet-label">Available<br>to Rent</div>
     <div class="ticker-viewport"><div class="ticker-track fleet-track" id="fleetTrack"></div></div>
   </div>
   <section><div class="wrap two">
     <div>
-      <h2 style="font-size:30px;margin-bottom:6px">High Quality Car Rentals in Cartersville, GA</h2>
+      <h2 style="font-size:30px;margin-bottom:6px">Rent From Empire Auto Group</h2>
       <p class="oswald" style="color:var(--blue);margin-bottom:16px">Offering our dedicated rental fleet of vehicles!</p>
       <p style="margin-bottom:14px">Looking for a reliable and affordable rental car? Our rental service offers a wide selection of vehicles, from compact cars to SUVs, ensuring a perfect fit for your needs. Whether for business, leisure, or special occasions, we provide flexible rates, exceptional customer service, and hassle-free bookings.</p>
       <p style="margin-bottom:14px">With 2 convenient locations in the metro Atlanta area, we make renting a hassle-free and affordable alternative to the big guys.</p>
@@ -512,7 +524,7 @@ footer .bottom{border-top:1px solid var(--line);margin-top:40px;padding:18px 0;f
         </div>
         <a class="btn" href="https://turo.com/us/en/host/28653535" target="_blank" rel="noopener" style="width:100%;text-align:center">See Our Cars &amp; Book on Turo →</a>
       </div>
-      <a class="btn ghost-d" href="tel:7705274067">Or Call (770) 527-4067</a>
+      <a class="btn ghost-d" href="tel:+16783836024">Or Call (678) 383-6024</a>
     </div>
     <form class="form-card" style="margin:0" name="rental-request" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return sendForm(event,'Car Rental Request')">
       <input type="hidden" name="form-name" value="rental-request"><p hidden><input name="bot-field"></p>
@@ -529,14 +541,14 @@ footer .bottom{border-top:1px solid var(--line);margin-top:40px;padding:18px 0;f
       </div>
       <button class="btn" style="margin-top:18px">Request Rental</button>
       <div class="ok">Thanks! We'll call you to confirm availability.</div>
-      <div class="err">Sorry — your message couldn\'t be sent. Please call us at <a href="tel:7705274067">(770) 527-4067</a>.</div>
+      <div class="err">Sorry — your message couldn\'t be sent. Please call us at <a href="tel:+16783836024">(678) 383-6024</a>.</div>
     </form>
   </div></section>
 </main>
 
 <!-- ============ FINDER ============ -->
 <main id="page-finder" class="page">
-  <div class="page-head"><h1>Car Finder</h1><div class="crumbs"><a href="#home">Home</a> / Car Finder</div></div>
+  <div class="page-head"><h1>Car Finder: We'll Find Your Next Car</h1><div class="crumbs"><a href="/">Home</a> / Car Finder</div></div>
   <section><div class="wrap">
     <div class="sec-title"><h2>Can't Find What You're Looking For?</h2><div class="bar"></div></div>
     <div class="finder-intro">
@@ -559,14 +571,14 @@ footer .bottom{border-top:1px solid var(--line);margin-top:40px;padding:18px 0;f
       </div>
       <button class="btn" style="margin-top:18px">Find My Car</button>
       <div class="ok">Got it! We'll reach out when we find a match.</div>
-      <div class="err">Sorry — your message couldn\'t be sent. Please call us at <a href="tel:7705274067">(770) 527-4067</a>.</div>
+      <div class="err">Sorry — your message couldn\'t be sent. Please call us at <a href="tel:+16783836024">(678) 383-6024</a>.</div>
     </form>
   </div></section>
 </main>
 
 <!-- ============ WARRANTY ============ -->
 <main id="page-warranty" class="page">
-  <div class="page-head"><h1>Warranty</h1><div class="crumbs"><a href="#home">Home</a> / Warranty</div></div>
+  <div class="page-head"><h1>Used Car Warranty Options</h1><div class="crumbs"><a href="/">Home</a> / Warranty</div></div>
   <section><div class="wrap">
     <div class="sec-title"><h2>Drive With Peace of Mind</h2><p>Warranty protection on the vehicles we sell.</p><div class="bar"></div></div>
     <div class="easy"><div class="grid">
@@ -575,22 +587,22 @@ footer .bottom{border-top:1px solid var(--line);margin-top:40px;padding:18px 0;f
         <h3>Free Powertrain Warranty</h3>
         <div class="w-term">6 Months / 7,500 Miles</div>
         <p>We provide a <b>FREE 6-month or 7,500-mile powertrain warranty</b> (whichever comes first) on a selection of our vehicles — at no extra cost to you. Please contact us for details on which vehicles qualify.</p>
-        <a class="btn" href="#contact">Contact Us for Details</a>
+        <a class="btn" href="/contact-us/">Contact Us for Details</a>
       </div>
       <div class="easy-card">
         <div class="w-tag" style="background:#fff;color:var(--blue)">Nationwide Coverage</div>
         <h3>Extended Warranties by ProGuard</h3>
         <p>We also offer extended warranties through <b>ProGuard</b>, a leading warranty company, with coverage available nationwide — so you're protected wherever the road takes you.</p>
-        <a class="btn" href="tel:7705274067">Call (770) 527-4067</a>
+        <a class="btn" href="tel:+16783836024">Call (678) 383-6024</a>
       </div>
     </div></div>
-    <p style="text-align:center;margin-top:30px;color:var(--muted)">Ask about warranty options on any vehicle in our <a href="#inventory" style="color:var(--blue);font-weight:700">inventory</a>.</p>
+    <p style="text-align:center;margin-top:30px;color:var(--muted)">Ask about warranty options on any vehicle in our <a href="/inventory/" style="color:var(--blue);font-weight:700">inventory</a>.</p>
   </div></section>
 </main>
 
 <!-- ============ ABOUT ============ -->
 <main id="page-about" class="page">
-  <div class="page-head"><h1>About Us</h1><div class="crumbs"><a href="#home">Home</a> / About Us</div></div>
+  <div class="page-head"><h1>About Empire Auto Group</h1><div class="crumbs"><a href="/">Home</a> / About Us</div></div>
   <section><div class="wrap two">
     <div>
       <h2 style="font-size:30px;margin-bottom:16px">Welcome to Empire Auto Group, located in Cartersville, GA</h2>
@@ -608,7 +620,7 @@ footer .bottom{border-top:1px solid var(--line);margin-top:40px;padding:18px 0;f
 
 <!-- ============ TESTIMONIALS ============ -->
 <main id="page-testimonials" class="page">
-  <div class="page-head"><h1>Testimonials</h1><div class="crumbs"><a href="#home">Home</a> / Testimonials</div></div>
+  <div class="page-head"><h1>Customer Reviews</h1><div class="crumbs"><a href="/">Home</a> / Testimonials</div></div>
   <section class="reviews"><div class="wrap">
     <div class="sec-title"><h2>5.0 ★ Facebook &nbsp;·&nbsp; 4.8 ★ Google</h2><div class="bar"></div></div>
     <div class="rev-track" id="allReviews"></div>
@@ -617,7 +629,7 @@ footer .bottom{border-top:1px solid var(--line);margin-top:40px;padding:18px 0;f
 
 <!-- ============ CONTACT ============ -->
 <main id="page-contact" class="page">
-  <div class="page-head"><h1>Contact Us</h1><div class="crumbs"><a href="#home">Home</a> / Contact Us</div></div>
+  <div class="page-head"><h1>Contact &amp; Directions</h1><div class="crumbs"><a href="/">Home</a> / Contact Us</div></div>
   <section><div class="wrap two">
     <form class="form-card" style="margin:0" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" onsubmit="return sendForm(event,'Website Contact / Test Drive')">
       <input type="hidden" name="form-name" value="contact"><p hidden><input name="bot-field"></p>
@@ -633,7 +645,7 @@ footer .bottom{border-top:1px solid var(--line);margin-top:40px;padding:18px 0;f
       </div>
       <button class="btn" style="margin-top:18px">Send</button>
       <div class="ok">Thanks! We'll be in touch shortly.</div>
-      <div class="err">Sorry — your message couldn\'t be sent. Please call us at <a href="tel:7705274067">(770) 527-4067</a>.</div>
+      <div class="err">Sorry — your message couldn\'t be sent. Please call us at <a href="tel:+16783836024">(678) 383-6024</a>.</div>
     </form>
     <div>
       <div class="info-box" data-info></div>
@@ -648,11 +660,11 @@ footer .bottom{border-top:1px solid var(--line);margin-top:40px;padding:18px 0;f
       <img src="https://dcdws.blob.core.windows.net/dws-9988903-83873-media/sites/83873/2026/10/Empire-Auto-Group-Automotive-Logo-w300.png" alt="Empire Auto Group" style="height:70px;margin-bottom:16px">
       <h4>How to Reach Us</h4>
       <p>305 S Tennessee St<br>Cartersville, GA 30120</p>
-      <p style="margin-top:8px"><a href="tel:7705274067">(770) 527-4067</a></p>
+      <p style="margin-top:8px"><a href="tel:+16783836024">(678) 383-6024</a></p>
     </div>
     <div><h4>Get Started</h4><ul>
-      <li><a href="#home">Home</a></li><li><a href="#inventory">Inventory</a></li><li><a href="#apply">Apply Online</a></li>
-      <li><a href="#rental">Car Rental</a></li><li><a href="https://turo.com/us/en/host/28653535" target="_blank" rel="noopener">Book on Turo ↗</a></li><li><a href="#finder">Car Finder</a></li><li><a href="#about">About Us</a></li><li><a href="#contact">Contact Us</a></li>
+      <li><a href="/">Home</a></li><li><a href="/inventory/">Inventory</a></li><li><a href="/vehicle-specials/">Vehicle Specials</a></li><li><a href="/apply-online/">Apply Online</a></li>
+      <li><a href="/car-rental/">Car Rental</a></li><li><a href="https://turo.com/us/en/host/28653535" target="_blank" rel="noopener">Book on Turo ↗</a></li><li><a href="/car-finder/">Car Finder</a></li><li><a href="/about-us/">About Us</a></li><li><a href="/contact-us/">Contact Us</a></li>
     </ul></div>
     <div><h4>Store Hours</h4><ul>
       <li>Mon – Sat: 10:00 AM – 6:00 PM</li><li>Sunday: Closed</li>
@@ -666,7 +678,7 @@ footer .bottom{border-top:1px solid var(--line);margin-top:40px;padding:18px 0;f
   <input type="hidden" name="form-name" value="application-alert"><input name="bot-field">
   <input name="Applicant Name"><input name="Phone"><input name="Email"><input name="Vehicle"><input name="Co-Buyer"><input name="Trade-In"><input name="Submitted"><input name="Open Full Application">
 </form>
-<a class="call-fab" href="tel:7705274067">📞 Call Us</a>
+<a class="call-fab" href="tel:+16783836024">📞 Call Us</a>
 
 <div class="modal" id="modal" onclick="if(event.target===this)closeModal()"><div class="modal-box">
   <button class="x" onclick="closeModal()" aria-label="Close">×</button>
@@ -687,6 +699,7 @@ const NETLIFY_SITE = "empireautoga";
 
 const IMG = "https://imagescf.dealercenter.net/640/480/";
 
+const SITE="https://www.empireautoga.com";
 /* Inventory is loaded live from /api/inventory (managed in the /admin page). */
 let CARS = [];
 const escH=v=>String(v??"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
@@ -731,7 +744,7 @@ const BODY_ICONS={
 
 function carCard(c){
   return `<div class="car">
-    <div class="img" style="background-image:url('${c.img}')"><span class="tag">${c.body}</span>${c.video?'<span class="vbadge">▶ Video</span>':''}${c.status==="pending"?'<span class="pbadge">Sale Pending</span>':''}</div>
+    <div class="img" role="img" aria-label="${title(c)}" style="background-image:url('${c.img}')"><span class="tag">${c.body}</span>${c.video?'<span class="vbadge">▶ Video</span>':''}${c.status==="pending"?'<span class="pbadge">Sale Pending</span>':''}</div>
     <div class="body">
       <h3>${title(c)}</h3><div class="trim">${c.trim}</div>
       <div class="price">${c.price?money(c.price)+" *":"Call for Price"}</div><div class="fee">${c.price?"*Includes Dealer Fees":"&nbsp;"}</div>
@@ -743,17 +756,19 @@ function carCard(c){
     </div></div>`;
 }
 
-function openCar(stock){
-  const c=CARS.find(x=>x.id===stock);const photos=c.photos&&c.photos.length?c.photos:[c.img];
+function openCar(stock,fromNav){
+  const c=CARS.find(x=>x.id===stock);if(!c)return;
+  if(!fromNav&&location.pathname!==carPath(c)){history.pushState({car:c.id},"",carPath(c));}
+  document.title=`${c.year} ${c.make} ${c.model} for Sale in Cartersville, GA | Empire Auto Group`;const photos=c.photos&&c.photos.length?c.photos:[c.img];
   $("#mMedia").className="m-media"+(c.video?" has-video":"");
-  $("#mMedia").innerHTML=`<div class="m-photo" id="mMain" style="background-image:url('${photos[0]}')"></div>`+
+  $("#mMedia").innerHTML=`<div class="m-photo" id="mMain" role="img" aria-label="${title(c)}" style="background-image:url('${photos[0]}')"></div>`+
     (c.video?`<div class="m-video"><video id="mVid" src="${c.video}" autoplay muted loop playsinline controls preload="auto"></video><span class="m-vlabel">▶ Walk-around video</span></div>`:"");
   $("#mThumbs").innerHTML=photos.length>1?photos.map((p,i)=>`<button class="m-th${i?"":" on"}" style="background-image:url('${p}')" onclick="setPhoto(this,${i})" aria-label="Photo ${i+1}"></button>`).join(""):"";
   $("#mThumbs").dataset.stock=stock;
   $("#mDet").innerHTML=`<div><h2>${title(c)}</h2><div class="trim" style="color:var(--muted)">${c.trim}</div>${c.status==="pending"?'<div class="pill-pend">Sale Pending</div>':""}
    <div class="price" style="font-family:Oswald;font-size:32px;color:var(--blue);margin-top:10px">${c.price?money(c.price)+" *":"Call for Price"}</div>
    ${c.price?'<div style="font-size:12px;color:var(--muted)">*Includes Dealer Fees</div>':''}
-   <div class="acts" style="margin-top:16px"><a class="btn" href="tel:7705274067">Call Now</a><a class="btn" style="background:#222" href="#contact" onclick="pick('${c.id}')">Test Drive</a><a class="btn" style="background:#222" href="#apply" onclick="pick('${c.id}')">Get Approved</a></div></div>
+   <div class="acts" style="margin-top:16px"><a class="btn" href="tel:+16783836024">Call Now</a><a class="btn" style="background:#222" href="/contact-us/" onclick="pick('${c.id}')">Test Drive</a><a class="btn" style="background:#222" href="/apply-online/" onclick="pick('${c.id}')">Get Approved</a></div></div>
    <table><tr><td>Year</td><td>${c.year}</td></tr><tr><td>Make</td><td>${c.make}</td></tr><tr><td>Model</td><td>${c.model}</td></tr>
    <tr><td>Trim</td><td>${c.trim}</td></tr><tr><td>Body</td><td>${c.body}</td></tr><tr><td>Mileage</td><td>${c.miles?c.miles.toLocaleString()+" mi":"—"}</td></tr><tr><td>Stock #</td><td>${c.stock||"—"}</td></tr>${[["Engine",c.engine],["Drivetrain",c.drivetrain],["Transmission",c.transmission],["Fuel",c.fuel],["Exterior",c.extColor],["Interior",c.intColor],["VIN",c.vin]].filter(r=>r[1]).map(r=>`<tr><td>${r[0]}</td><td>${r[1]}</td></tr>`).join("")}</table>
    ${c.description?`<p style="grid-column:1/-1;color:#3a3d42;white-space:pre-line">${c.description}</p>`:""}`;
@@ -762,14 +777,14 @@ function openCar(stock){
 }
 function setPhoto(btn,i){const c=CARS.find(x=>x.id===$("#mThumbs").dataset.stock);$("#mMain").style.backgroundImage=`url('${(c.photos.length?c.photos:[c.img])[i]}')`;document.querySelectorAll(".m-th").forEach(b=>b.classList.toggle("on",b===btn))}
 document.addEventListener("change",e=>{if(e.target.id!=="applyVeh")return;const c=CARS.find(x=>title(x)===e.target.value);if(!c)return;const F=e.target.form.elements;F["Stock Number"].value=c.stock;F["Vehicle Year"].value=c.year;F["Vehicle Make"].value=c.make;F["Vehicle Model"].value=c.model;F["Vehicle Price"].value=money(c.price);});
-function closeModal(){$("#modal").classList.remove("show");const v=$("#mVid");if(v)v.pause()}
-function pick(id){closeModal();const t=title(CARS.find(c=>c.id===id));["#applyVeh","#contactVeh"].forEach(s=>{$(s).value=t;$(s).dispatchEvent(new Event("change",{bubbles:true}))})}
+function closeModal(silent){const open=$("#modal").classList.contains("show");$("#modal").classList.remove("show");const v=$("#mVid");if(v)v.pause();if(!silent&&open&&/^\/inventory\/.+\/.+\/.+/.test(location.pathname)){history.pushState({},"","/inventory/");route(false);}}
+function pick(id){closeModal(true);const t=title(CARS.find(c=>c.id===id));["#applyVeh","#contactVeh"].forEach(s=>{$(s).value=t;$(s).dispatchEvent(new Event("change",{bubbles:true}))})}
 
 function fill(sel,label,vals){$(sel).innerHTML=`<option value="">${label}</option>`+vals.map(v=>`<option>${v}</option>`).join("")}
 
 function revHTML(r){const long=r.text.length>260;return `<div class="rev ${long?'long':''}"><div class="stars">★★★★★</div><p>${r.text}</p>${long?'<button class="more" onclick="this.parentElement.classList.toggle(\'open\');this.textContent=this.parentElement.classList.contains(\'open\')?\'Show less\':\'Read more\'">Read more</button>':''}<div class="who">— ${r.who}</div></div>`}
 
-const INFO=`<h3>Dealer Information</h3><p>305 S Tennessee St<br>Cartersville, GA 30120<br><a href="tel:7705274067" style="color:#fff;font-weight:700">(770) 527-4067</a></p>
+const INFO=`<h3>Dealer Information</h3><p>305 S Tennessee St<br>Cartersville, GA 30120<br><a href="tel:+16783836024" style="color:#fff;font-weight:700">(678) 383-6024</a></p>
  <p style="margin-top:6px"><b>¡Hablamos Español!</b></p>
  <h3 style="margin-top:22px">Business Hours</h3><ul class="hours">${["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"].map(d=>`<li><span>${d}</span><span>10:00 AM – 6:00 PM</span></li>`).join("")}<li><span>Sunday</span><span>Closed</span></li></ul>`;
 
@@ -780,12 +795,12 @@ function renderInv(){
   if(s=="pa")list.sort((a,b)=>a.price-b.price);if(s=="pd")list.sort((a,b)=>b.price-a.price);
   if(s=="yd")list.sort((a,b)=>b.year-a.year);if(s=="ma")list.sort((a,b)=>a.miles-b.miles);
   $("#count").textContent=`${list.length} Available Vehicle${list.length==1?"":"s"}`;
-  $("#invList").innerHTML=list.length?list.map(carCard).join(""):`<p>No vehicles match those filters. <a href="#finder" style="color:var(--blue);font-weight:700">Let our Car Finder search for you →</a></p>`;
+  $("#invList").innerHTML=list.length?list.map(carCard).join(""):`<p>No vehicles match those filters. <a href="/car-finder/" style="color:var(--blue);font-weight:700">Let our Car Finder search for you →</a></p>`;
 }
 function resetFilters(){["#fYear","#fMake","#fModel","#fBody","#fPrice","#fMiles","#sort"].forEach(s=>$(s).value="");renderInv()}
 
-function quickSearch(e){e.preventDefault();resetFilters();$("#fYear").value=$("#qYear").value;$("#fMake").value=$("#qMake").value;$("#fModel").value=$("#qModel").value;location.hash="inventory";renderInv();return false}
-function bodySearch(b){resetFilters();$("#fBody").value=b;location.hash="inventory";renderInv()}
+function quickSearch(e){e.preventDefault();resetFilters();$("#fYear").value=$("#qYear").value;$("#fMake").value=$("#qMake").value;$("#fModel").value=$("#qModel").value;go("/inventory/");renderInv();return false}
+function bodySearch(b){resetFilters();$("#fBody").value=b;go("/inventory/");renderInv()}
 
 function sendForm(e,subject){
   e.preventDefault();const form=e.target;
@@ -812,21 +827,36 @@ document.querySelectorAll("[data-show]").forEach(c=>c.addEventListener("change",
 document.getElementById("hasCo").addEventListener("change",e=>document.getElementById("coFields").classList.toggle("open",e.target.checked));
 document.querySelectorAll("form button:not([type=button])").forEach(b=>b.dataset.label=b.textContent);
 
-function route(){
-  const p=(location.hash||"#home").slice(1);
-  const page=document.getElementById("page-"+p)?p:"home";
+/* ---------- page routing (real URLs) ---------- */
+const PAGES=window.PAGES||{};
+const PATH2PAGE={"/":"home","/inventory/":"inventory","/vehicle-specials/":"specials","/apply-online/":"apply","/car-rental/":"rental","/car-finder/":"finder","/warranty/":"warranty","/about-us/":"about","/testimonials/":"testimonials","/contact-us/":"contact"};
+const slugify=s=>String(s).toLowerCase().replace(/&amp;/g,"and").replace(/[^a-z0-9]+/g,"-").replace(/^-|-$/g,"");
+const carPath=c=>`/inventory/${slugify(c.make)}/${slugify(c.model)}/${encodeURIComponent(c.stock||c.id)}/`;
+function pageFromPath(p){if(!p.endsWith("/"))p+="/";if(PATH2PAGE[p])return PATH2PAGE[p];if(/^\/inventory\/[^/]+\/[^/]+\/[^/]+\/$/.test(p))return "inventory";return "home"}
+function setMeta(page){const m=PAGES[page];if(!m)return;document.title=m.title;const d=document.querySelector('meta[name="description"]');if(d)d.content=m.desc;const c=document.querySelector('link[rel="canonical"]');if(c)c.href=SITE+m.path;}
+function route(scroll=true){
+  const page=pageFromPath(location.pathname);
   document.querySelectorAll(".page").forEach(el=>el.classList.toggle("active",el.id==="page-"+page));
-  document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("active",a.getAttribute("href")==="#"+page));
+  document.querySelectorAll("nav a").forEach(a=>a.classList.toggle("active",PATH2PAGE[a.getAttribute("href")]===page));
   document.querySelector("nav").classList.remove("open");
-  window.scrollTo(0,0);
+  if(!/^\/inventory\/.+\/.+\/.+/.test(location.pathname))setMeta(page);
+  if(scroll)window.scrollTo(0,0);
 }
+function go(path){if(location.pathname!==path)history.pushState({},"",path);closeModal(true);route();}
+document.addEventListener("click",e=>{
+  const a=e.target.closest("a[href]");if(!a||e.defaultPrevented||e.button||e.metaKey||e.ctrlKey||e.shiftKey||a.target)return;
+  const href=a.getAttribute("href");if(!href.startsWith("/")||href.startsWith("/admin")||href.startsWith("//"))return;
+  if(PATH2PAGE[href]===undefined)return;
+  e.preventDefault();go(href);
+});
+window.addEventListener("popstate",()=>{route(false);const m=location.pathname.match(/^\/inventory\/[^/]+\/[^/]+\/([^/]+)\/$/);if(m){const c=CARS.find(x=>(x.stock||x.id)===decodeURIComponent(m[1]));if(c)openCar(c.id,true)}else closeModal(true)});
 
 // init
 $("#homeReviews").innerHTML=REVIEWS.slice(0,3).map(revHTML).join("");
 $("#allReviews").innerHTML=REVIEWS.map(revHTML).join("");
 (function(){
   const short=t=>t.length>140?t.slice(0,t.lastIndexOf(" ",137))+"…":t;
-  const items=REVIEWS.map(r=>`<a class="ticker-item" href="#testimonials">${r.source?`<span class="src">${r.source}</span>`:""}<span class="stars">★★★★★</span><i>“${short(r.text)}”</i><b>— ${r.who}</b></a>`).join("");
+  const items=REVIEWS.map(r=>`<a class="ticker-item" href="/testimonials/">${r.source?`<span class="src">${r.source}</span>`:""}<span class="stars">★★★★★</span><i>“${short(r.text)}”</i><b>— ${r.who}</b></a>`).join("");
   const t=$("#tickerTrack");t.innerHTML=items+items; // doubled for a seamless loop
   requestAnimationFrame(()=>t.style.setProperty("--dur",Math.max(30,t.scrollWidth/2/60)+"s")); // ~60px per second
 })();
@@ -842,20 +872,24 @@ $("#allReviews").innerHTML=REVIEWS.map(revHTML).join("");
 document.querySelectorAll("[data-info]").forEach(el=>el.innerHTML=INFO);
 ["#fYear","#fMake","#fModel","#fBody","#fPrice","#fMiles","#sort"].forEach(s=>$(s).addEventListener("change",renderInv));
 $("#yr").textContent=new Date().getFullYear();
-route();window.addEventListener("hashchange",route);
+// old #page links (from bookmarks) -> real URLs
+{const OLD={home:"/",inventory:"/inventory/",apply:"/apply-online/",rental:"/car-rental/",finder:"/car-finder/",warranty:"/warranty/",about:"/about-us/",testimonials:"/testimonials/",contact:"/contact-us/"};const k=location.hash.slice(1);if(OLD[k])history.replaceState({},"",OLD[k]);}
+route(false);
 function initInventory(){
 fill("#qYear","Any Year",uniq(CARS.map(c=>c.year)));fill("#qMake","Any Make",uniq(CARS.map(c=>c.make)));fill("#qModel","Any Model",uniq(CARS.map(c=>c.model)));
 fill("#fYear","Any Year",uniq(CARS.map(c=>c.year)));fill("#fMake","Any Make",uniq(CARS.map(c=>c.make)));fill("#fModel","Any Model",uniq(CARS.map(c=>c.model)));fill("#fBody","Any Body Type",uniq(CARS.map(c=>c.body)));
 ["#applyVeh","#contactVeh"].forEach(s=>fill(s,"— Select a vehicle (optional) —",CARS.map(title)));
 $("#bodies").innerHTML=["SUV","Coupe","Pickup","Sedan"].map(b=>`<div class="body-card" onclick="bodySearch('${b}')">${BODY_ICONS[b]}<b>${b}</b></div>`).join("");
 $("#featured").innerHTML=CARS.filter(c=>c.featured).map(carCard).join("");
+  $("#specialsList").innerHTML=(CARS.filter(c=>c.featured).length?CARS.filter(c=>c.featured):CARS).map(carCard).join("")||"<p>Check back soon for this week's specials.</p>";
   renderInv();
-  if(location.hash==="#inventory")renderInv();
+  const vm=location.pathname.match(/^\/inventory\/[^/]+\/[^/]+\/([^/]+)\/$/);
+  if(vm){const c=CARS.find(x=>(x.stock||x.id)===decodeURIComponent(vm[1]));if(c)openCar(c.id,true);}
 }
 fetch("/api/inventory").then(r=>{if(!r.ok)throw 0;return r.json()}).then(list=>{
   CARS=list.map(c=>{const o={};for(const k in c)o[k]=typeof c[k]==="string"?escH(c[k]):c[k];
     o.photos=(c.photos||[]).map(escH);o.img=o.photos[0]||NO_PHOTO;return o;});
-}).catch(()=>{$("#invList").innerHTML='<p>Inventory is temporarily unavailable — please call us at <a href="tel:7705274067" style="color:var(--blue);font-weight:700">(770) 527-4067</a>.</p>';})
+}).catch(()=>{$("#invList").innerHTML='<p>Inventory is temporarily unavailable — please call us at <a href="tel:+16783836024" style="color:var(--blue);font-weight:700">(678) 383-6024</a>.</p>';})
   .finally(initInventory);
 document.addEventListener("keydown",e=>{if(e.key==="Escape")closeModal()});
 </script>

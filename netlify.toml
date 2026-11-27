@@ -1,7 +1,7 @@
 [build]
   publish = "public"
   functions = "netlify/functions"
-  command = "echo 'No build step'"
+  command = "node scripts/build.mjs"
 
 # Keep the admin page out of search engines
 [[headers]]
