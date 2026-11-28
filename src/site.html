@@ -91,6 +91,12 @@ section{padding:80px 0}
 .body-card:hover{border-color:var(--blue);transform:translateY(-3px)}
 .body-card svg{height:60px;width:auto;margin:0 auto 10px;fill:#222}
 .body-card b{font-family:Oswald;text-transform:uppercase;font-size:18px}
+.body-card.photo{padding:0;position:relative;overflow:hidden;aspect-ratio:4/3;text-align:left}
+.body-card.photo .bc-img{position:absolute;inset:0;background:#222 center/cover no-repeat;transition:transform .4s}
+.body-card.photo:hover .bc-img{transform:scale(1.06)}
+.body-card.photo .bc-label{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 12px;background:linear-gradient(transparent,rgba(0,0,0,.85));color:#fff;display:flex;justify-content:space-between;align-items:flex-end;gap:8px;flex-wrap:wrap}
+.body-card.photo .bc-label b{font-size:22px}
+.body-card.photo .bc-label span{font-size:13px;font-weight:600;color:var(--blue)}
 
 .cars{display:grid;grid-template-columns:repeat(auto-fill,minmax(270px,1fr));gap:24px}
 .car{background:#fff;border:1px solid #e3e5e8;border-radius:6px;overflow:hidden;display:flex;flex-direction:column;transition:.2s}
@@ -929,7 +935,9 @@ fill("#qYear","Any Year",uniq(CARS.map(c=>c.year)));fill("#qMake","Any Make",uni
 fill("#fYear","Any Year",uniq(CARS.map(c=>c.year)));fill("#fMake","Any Make",uniq(CARS.map(c=>c.make)));fill("#fModel","Any Model",uniq(CARS.map(c=>c.model)));fill("#fBody","Any Body Type",uniq(CARS.map(c=>c.body)));
 ["#applyVeh","#contactVeh"].forEach(s=>fill(s,"— Select a vehicle (optional) —",CARS.map(title)));
   try{const t=sessionStorage.getItem("eag_pick");if(t){sessionStorage.removeItem("eag_pick");["#applyVeh","#contactVeh"].forEach(s=>{$(s).value=t;$(s).dispatchEvent(new Event("change",{bubbles:true}))})}}catch{}
-$("#bodies").innerHTML=["SUV","Coupe","Pickup","Sedan"].map(b=>`<div class="body-card" onclick="bodySearch('${b}')">${BODY_ICONS[b]}<b>${b}</b></div>`).join("");
+$("#bodies").innerHTML=["SUV","Sedan","Pickup","Coupe"].map(b=>{const list=CARS.filter(c=>c.body===b);const pic=(list.find(c=>c.photos&&c.photos.length)||{}).img;const n=list.length;
+  return pic?`<div class="body-card photo" role="link" tabindex="0" onclick="bodySearch('${b}')" onkeydown="if(event.key==='Enter')bodySearch('${b}')"><div class="bc-img" role="img" aria-label="${b} for sale" style="background-image:url('${pic}')"></div><div class="bc-label"><b>${b}s</b><span>${n} available →</span></div></div>`
+  :`<div class="body-card" onclick="bodySearch('${b}')">${BODY_ICONS[b]}<b>${b}</b></div>`}).join("");
 $("#featured").innerHTML=CARS.filter(c=>c.featured).map(carCard).join("");
   $("#specialsList").innerHTML=(CARS.filter(c=>c.featured).length?CARS.filter(c=>c.featured):CARS).map(carCard).join("")||"<p>Check back soon for this week's specials.</p>";
   {const sp=new URLSearchParams(location.search);[["year","#fYear"],["make","#fMake"],["model","#fModel"],["body","#fBody"]].forEach(([k,s])=>{if(sp.get(k))$(s).value=sp.get(k)});}
