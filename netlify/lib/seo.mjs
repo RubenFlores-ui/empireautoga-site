@@ -16,7 +16,7 @@ export const PAGES = {
   warranty:     { path: "/warranty/",         title: "Used Car Warranty Options | Empire Auto Group",               desc: "Protect your next used car with warranty coverage from Empire Auto Group in Cartersville, GA. Ask about available plans." },
   about:        { path: "/about-us/",         title: "About Empire Auto Group | Cartersville Used Car Dealer",      desc: "Family-focused used car dealer in Cartersville, GA built on honesty and integrity. Meet the team and see why customers come back." },
   testimonials: { path: "/testimonials/",     title: "Customer Reviews | Empire Auto Group, Cartersville GA",       desc: "Read what real customers say about buying a used car at Empire Auto Group in Cartersville, GA." },
-  contact:      { path: "/contact-us/",       title: "Contact & Directions | Empire Auto Group Cartersville",       desc: "Visit us at 305 S Tennessee St, Cartersville, GA 30120. Open Mon–Sat 10–6. Call (678) 383-6024 or send a message." },
+  contact:      { path: "/contact-us/",       title: "Contact & Directions | Empire Auto Group Cartersville",       desc: "Visit us at 305 S Tennessee St, Cartersville, GA 30120. Open by appointment Mon–Fri 10–6:30, Sat 9–12. Call (678) 383-6024 or send a message." },
 };
 
 export const DEALER_ID = SITE + "/#dealer";
@@ -33,7 +33,10 @@ export function dealerJsonLd() {
     telephone: PHONE,
     priceRange: "$5,000-$25,000",
     address: { "@type": "PostalAddress", streetAddress: "305 S Tennessee St", addressLocality: "Cartersville", addressRegion: "GA", postalCode: "30120", addressCountry: "US" },
-    openingHoursSpecification: [{ "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], opens: "10:00", closes: "18:00" }],
+    openingHoursSpecification: [
+      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"], opens: "10:00", closes: "18:30" },
+      { "@type": "OpeningHoursSpecification", dayOfWeek: ["Saturday"], opens: "09:00", closes: "12:00" },
+    ],
     areaServed: ["Cartersville GA", "Bartow County GA"],
     knowsLanguage: ["en", "es"],
     hasMap: GOOGLE,

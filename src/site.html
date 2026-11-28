@@ -717,8 +717,8 @@ input::placeholder,textarea::placeholder{color:#7c8087}
       <li><a href="/">Home</a></li><li><a href="/inventory/">Inventory</a></li><li><a href="/vehicle-specials/">Vehicle Specials</a></li><li><a href="/apply-online/">Apply Online</a></li>
       <li><a href="/car-rental/">Car Rental</a></li><li><a href="https://turo.com/us/en/host/28653535" target="_blank" rel="noopener">Book on Turo ↗</a></li><li><a href="/car-finder/">Car Finder</a></li><li><a href="/about-us/">About Us</a></li><li><a href="/contact-us/">Contact Us</a></li>
     </ul></div>
-    <div><h4>Store Hours</h4><ul>
-      <li>Mon – Sat: 10:00 AM – 6:00 PM</li><li>Sunday: Closed</li>
+    <div><h4>Store Hours <span style="font-weight:400;font-size:.85em">(by appointment)</span></h4><ul>
+      <li>Mon – Fri: 10:00 AM – 6:30 PM</li><li>Saturday: 9:00 AM – 12:00 PM</li><li>Sunday: Closed</li>
     </ul><p style="margin-top:14px"><b style="color:#fff">¡Hablamos Español!</b></p></div>
   </div>
   <div class="bottom">© <span id="yr"></span> Empire Auto Group LLC · All prices include dealer fees · Prices and availability subject to change. · <a href="/admin/" rel="nofollow" class="staff-link">Admin</a></div>
@@ -848,7 +848,7 @@ function revHTML(r){const long=r.text.length>260;return `<div class="rev ${long?
 
 const INFO=`<h3>Dealer Information</h3><p>305 S Tennessee St<br>Cartersville, GA 30120<br><a href="tel:+16783836024" style="color:#fff;font-weight:700">(678) 383-6024</a></p>
  <p style="margin-top:6px"><b>¡Hablamos Español!</b></p>
- <h3 style="margin-top:22px">Business Hours</h3><ul class="hours">${["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"].map(d=>`<li><span>${d}</span><span>10:00 AM – 6:00 PM</span></li>`).join("")}<li><span>Sunday</span><span>Closed</span></li></ul>`;
+ <h3 style="margin-top:22px">Business Hours</h3><p style="margin-top:4px"><b>By appointment</b></p><ul class="hours">${["Monday","Tuesday","Wednesday","Thursday","Friday"].map(d=>`<li><span>${d}</span><span>10:00 AM – 6:30 PM</span></li>`).join("")}<li><span>Saturday</span><span>9:00 AM – 12:00 PM</span></li><li><span>Sunday</span><span>Closed</span></li></ul>`;
 
 function renderInv(){
   const f={year:$("#fYear").value,make:$("#fMake").value,model:$("#fModel").value,body:$("#fBody").value,price:+$("#fPrice").value||0,miles:+$("#fMiles").value||0};
